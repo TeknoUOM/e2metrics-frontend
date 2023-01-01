@@ -1,5 +1,6 @@
 import React from "react";
 import './NavBar.css'
+import logo from './../../images/logo.png'
 
 function NavBar() {
     return (
@@ -7,8 +8,8 @@ function NavBar() {
             <nav class="navbar is-fixed-top">
                 <div className="container">
                     <div class="navbar-brand">
-                        <a class="navbar-item" href="https://bulma.io">
-                            <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28" />
+                        <a class="navbar-item" href="">
+                            <img src={logo} alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28" />
                         </a>
                         <div class="navbar-burger" data-target="navbarExampleTransparentExample">
                             <span></span>

@@ -3,6 +3,7 @@ import './index.css';
 import NavBar from "../../common/NavBar/NavBar";
 import Footer from "../../common/Footer/Footer";
 import LoginCard from "./components/LoginCard/LoginCard";
+import logo from './../../images/logo.png'
 
 function LoginPage() {
   return (
@@ -12,7 +13,7 @@ function LoginPage() {
         <div class="hero-body gradient-bg">
           <div className="container align">
             <div className="big-logo">
-              <img src="https://bulma.io/images/bulma-logo.png"/>
+              <img className="logo" src={logo}/>
             </div>
             <LoginCard/>
           </div>

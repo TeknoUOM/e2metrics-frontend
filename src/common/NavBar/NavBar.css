@@ -12,3 +12,8 @@
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 }
+
+.navbar-item img{
+    width: auto !important;
+    max-height: 3rem !important;
+}
