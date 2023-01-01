@@ -1,0 +1,15 @@
+.gradient-bg {
+    background: rgb(20, 251, 0);
+    background: linear-gradient(311deg, rgba(20, 251, 0, 1) 0%, rgba(0, 232, 148, 1) 100%);
+}
+
+.align {
+    display: flex;
+    justify-content: space-between;
+}
+
+.big-logo{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}

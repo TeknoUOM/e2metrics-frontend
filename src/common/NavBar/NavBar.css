@@ -1,0 +1,14 @@
+.navbar-item:hover {
+    background-color: white !important;
+}
+
+.navbar-item {
+    font-weight: 500 !important;
+}
+
+.navbar {
+    -webkit-box-shadow: 0px 10px 35px 0px rgba(92, 210, 160, 0.2) !important;
+    box-shadow: 0px 10px 35px 0px rgba(92, 210, 160, 0.2) !important;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}

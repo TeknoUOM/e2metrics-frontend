@@ -1,0 +1,16 @@
+.login-card{
+    width: 500px;
+    height: 700px;
+    padding: 50px;
+}
+
+.main-form{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.full-width{
+    width: 100%;
+}
