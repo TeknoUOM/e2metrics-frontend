@@ -1,45 +1,44 @@
 import React from "react";
 import './NavBar.css'
 import logo from './../../images/logo.png'
+import { Link } from "react-router-dom";
 
 function NavBar() {
     return (
         <>
-            <nav class="navbar is-fixed-top">
+            <nav className="navbar is-fixed-top">
                 <div className="container">
-                    <div class="navbar-brand">
-                        <a class="navbar-item" href="">
+                    <div className="navbar-brand">
+                        <a className="navbar-item" href="">
                             <img src={logo} alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28" />
                         </a>
-                        <div class="navbar-burger" data-target="navbarExampleTransparentExample">
+                        <div className="navbar-burger" data-target="navbarExampleTransparentExample">
                             <span></span>
                             <span></span>
                             <span></span>
                         </div>
                     </div>
 
-                    <div id="navbarExampleTransparentExample" class="navbar-menu">
-                        <div class="navbar-start">
+                    <div id="navbarExampleTransparentExample" className="navbar-menu">
+                        <div className="navbar-start">
 
                         </div>
 
-                        <div class="navbar-end">
-                            <a class="navbar-item ml-4" href="">
+                        <div className="navbar-end">
+                            <a className="navbar-item ml-4" href="">
                                 About
                             </a>
-                            <a class="navbar-item ml-4" href="">
+                            <a className="navbar-item ml-4" href="">
                                 Features
                             </a>
-                            <a class="navbar-item ml-4" href="">
+                            <a className="navbar-item ml-4" href="">
                                 Pricing
                             </a>
-                            <a class="navbar-item ml-4" href="">
+                            <a className="navbar-item ml-4" href="">
                                 Contact us
                             </a>
-                            <a class="navbar-item ml-4" href="/login">
-                                <button class="button gradient-button">
-                                    <span>Log in</span>
-                                </button>
+                            <a className="navbar-item ml-4" href="/login">
+                                <Link className="button gradient-button" style={{color:"black"}} to="/login">Log in</Link>
                             </a>
                         </div>
                     </div>

@@ -9,7 +9,7 @@ function HomePage() {
     <>
       <NavBar />
       <section className="hero is-fullheight-with-navbar hero-bg-color">
-        <div class="hero-body">
+        <div className="hero-body">
           <Hero/>
         </div>
       </section>

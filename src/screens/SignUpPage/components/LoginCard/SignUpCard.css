@@ -14,19 +14,7 @@
 .full-width{
     width: 100%;
 }
-
-p {
+p{
     text-align: center;
     color: #0F1C5F;
-}
-
-.remember-me{
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: row-reverse;
-}
-
-.flex{
-    display: flex;
-    justify-content: space-between;
 }

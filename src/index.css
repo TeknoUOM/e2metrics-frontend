@@ -5,7 +5,7 @@
 /* Import Animate CSS */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
 
-body::-webkit-scrollbar{
+body::-webkit-scrollbar {
   display: none;
 }
 
@@ -21,11 +21,11 @@ code {
     monospace;
 }
 
-.hero-body{
+.hero-body {
   padding: 0px !important;
 }
 
-.container{
+.container {
   max-width: 1400px !important;
 }
 

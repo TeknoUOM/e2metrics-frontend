@@ -10,7 +10,7 @@ function LoginPage() {
     <>
       <NavBar />
       <section className="hero is-fullheight-with-navbar">
-        <div class="hero-body gradient-bg">
+        <div className="hero-body gradient-bg">
           <div className="container align">
             <div className="big-logo">
               <img className="logo" src={logo}/>
