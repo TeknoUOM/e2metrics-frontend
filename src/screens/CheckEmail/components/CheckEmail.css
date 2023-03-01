@@ -1,0 +1,59 @@
+
+.box1{
+    
+
+    margin: auto;
+    width: 798px;
+    height: 949px;
+    
+    left: 100px;
+    top: 0px;
+    
+    
+    background: #F4F4F4;
+    }
+    .box1>h1{
+        font-size: large;
+    }
+    
+    .box1>h4{
+        font-size: 18px;
+    }
+    .emailButton{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    width: 377px;
+    height: 48px;
+    margin-top: 30px;
+    
+    /* Inside auto layout */
+   
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+    }
+    
+    .fgt_image{
+        padding-top: 50px;    
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 278px;
+        height: auto;
+    }
+    .box1>h1{
+        text-align: center;
+        font-size:32px;
+        font-weight: bold;
+    }
+    .box1>h4{
+        text-align: center;
+    }
+    
+     

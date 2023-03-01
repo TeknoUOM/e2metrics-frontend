@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import './LoginCard.css'
 
 function LoginCard() {
@@ -28,7 +29,7 @@ function LoginCard() {
                         <input style={{background:"#3CE794"}} type="checkbox"/>
                         </div>
                         
-                        <p>Forgot password?</p>
+                        <Link to="/reset">Forgot password?</Link>
                     </div>
                     <div className="field">
                         <p className="control">
