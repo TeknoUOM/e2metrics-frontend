@@ -4,13 +4,26 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bulma/css/bulma.min.css';
+import { AuthProvider } from '@asgardeo/auth-react';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+
+const config = {
+          signInRedirectURL: "https://localhost:3000",
+          signOutRedirectURL: "https://localhost:3000",
+          clientID: "2C6sgeKa7ZIXInTYmdZg0j3Sf_Ia",
+          baseUrl: "https://api.asgardeo.io/t/tekno",
+          scope: [ "openid","profile" ]
+      }
+
 root.render(
   <React.StrictMode>
-    <App />
+    <AuthProvider config={config}>
+      <App />
+    </AuthProvider>
   </React.StrictMode>
 );
 

@@ -2,8 +2,11 @@ import React from "react";
 import './NavBar.css'
 import logo from './../../images/logo.png'
 import { Link } from "react-router-dom";
+import { useAuthContext } from "@asgardeo/auth-react";
 
 function NavBar() {
+    
+  const { signIn } = useAuthContext();
     return (
         <>
             <nav className="navbar is-fixed-top">
@@ -25,20 +28,20 @@ function NavBar() {
                         </div>
 
                         <div className="navbar-end">
-                            <a className="navbar-item ml-4" href="">
+                            <Link className="navbar-item ml-4" to="#">
                                 About
-                            </a>
-                            <a className="navbar-item ml-4" href="">
+                            </Link>
+                            <Link className="navbar-item ml-4" to="#">
                                 Features
-                            </a>
-                            <a className="navbar-item ml-4" href="">
+                            </Link>
+                            <Link className="navbar-item ml-4" to="#">
                                 Pricing
-                            </a>
-                            <a className="navbar-item ml-4" href="">
+                            </Link>
+                            <Link className="navbar-item ml-4" to="#">
                                 Contact us
-                            </a>
-                            <a className="navbar-item ml-4" href="/login">
-                                <Link className="button gradient-button" style={{color:"black"}} to="/login">Log in</Link>
+                            </Link>
+                            <a className="navbar-item ml-4">
+                                <button className="button gradient-button" style={{color:"black"}} onClick={()=>signIn()}>Log in</button>
                             </a>
                         </div>
                     </div>
