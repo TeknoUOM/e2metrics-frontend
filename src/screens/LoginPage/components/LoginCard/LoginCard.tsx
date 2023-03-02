@@ -1,5 +1,5 @@
 import React from "react";
-import './LoginCard.css'
+import './LoginCard.css';
 
 function LoginCard() {
     return (
@@ -41,8 +41,9 @@ function LoginCard() {
                         <p>or Login with</p>
                     </div>
                     <div className="field has-text-centered mt-3">
-                        <button className="button is-outline">Facebook</button>
-                        <button className="button is-outline mx-4">Linked In</button>
+                        <button className="button is-outline">
+                            Github</button>
+                        <button className="button is-outline mx-4">Google</button>
                         <button className="button is-outline">Google</button>
                     </div>
                 </div>
