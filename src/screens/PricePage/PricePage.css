@@ -1,0 +1,20 @@
+.free-button{
+    background-color: #3CE794 !important;
+}
+
+.basic-button{
+    background-color: white;
+}
+
+.button{
+    border-radius: 20px;
+}
+
+.price-card li{
+  list-style: none;
+}
+
+.price-card ul li:before {
+  content: '✓';
+  font-weight: bold;
+}
