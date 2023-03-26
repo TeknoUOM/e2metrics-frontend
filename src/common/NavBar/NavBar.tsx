@@ -31,10 +31,10 @@ function NavBar() {
                             <Link className="navbar-item ml-4" to="#">
                                 About
                             </Link>
-                            <Link className="navbar-item ml-4" to="#">
+                            <Link className="navbar-item ml-4" to="/feature">
                                 Features
                             </Link>
-                            <Link className="navbar-item ml-4" to="#">
+                            <Link className="navbar-item ml-4" to="/price">
                                 Pricing
                             </Link>
                             <Link className="navbar-item ml-4" to="#">
