@@ -112,6 +112,7 @@ const PickRepositories = () => {
                                   <NavLink
                                     to={
                                       location.pathname +
+                                      "/" +
                                       repo.user +
                                       "/" +
                                       repo.repo
