@@ -1,162 +1,192 @@
-
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css";
 
-*{
-    margin:0;
-    padding:0;
-    text-decoration: none;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
 }
-.sidebar-container{
-    display:flex;
-}
-
-main{
-    width: 100%;
-    padding: 20px;
-    background-color: #f4f4f4;
-}
-.sidebar{
-    background: #f4f4f4;
-    color: #000000;
-    height: 100vh;
-    width: 200px;
-    transition: all 0.5s;
-    border-right: 2px solid #000000 ;
-}
-.top_section{
-    display: flex;
-    align-items:center;
-    padding:10px 40px;
-}
-.settings-title{
-    font-size: 30px;
-    font-weight: 700;
+.sidebar-container {
+  display: flex;
 }
 
-.logo-e2metrics{
-	width:90px;
-	padding: 20px 60px;
-	display: flex;
-	top: 50;
-    background-color:#f4f4f4 ;
-    display: flex;
+main {
+  width: 100%;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+.sidebar {
+  background: #f4f4f4;
+  color: #000000;
+  height: 100vh;
+  width: 200px;
+  transition: all 0.5s;
+  border-right: 2px solid #000000;
+}
+.top_section {
+  display: flex;
+  align-items: center;
+  padding: 10px 40px;
+}
+.settings-title {
+  font-size: 30px;
+  font-weight: 700;
 }
 
-.link{
-    display: flex;
-    color: #000000;
-    padding: 10px 15px;
-    gap: 15px;
-    transition: all 0.5s;
-}
-.link:hover{
-    background:#e8e8e8;
-    color: #000;
-    transition: all 0.5s;
-}
-.active{
-    background: #e8e8e8;
-    color: #000;
-}
-.icon, .link_text{
-    font-size: 15px;
+.logo-e2metrics {
+  width: 90px;
+  padding: 20px 60px;
+  display: flex;
+  top: 50;
+  background-color: #f4f4f4;
+  display: flex;
 }
 
-.mydetails-container{
-    margin: auto;
-    margin-top: 8%;
-    background: #f4f4f4;
-    color: #000000;
-    width: 0%;
-    
+.link {
+  display: flex;
+  color: #000000;
+  padding: 10px 15px;
+  gap: 15px;
+  transition: all 0.5s;
+}
+.link:hover {
+  background: #e8e8e8;
+  color: #000;
+  transition: all 0.5s;
+}
+.active {
+  background: #e8e8e8;
+  color: #000;
+}
+.icon,
+.link_text {
+  font-size: 15px;
 }
 
-
-input[type=text] {
-    background-color: #ffffff;
-    input-focus-border-color: black;
+.mydetails-container {
+  margin: auto;
+  margin-top: 8%;
+  background: #f4f4f4;
+  color: #000000;
+  width: 0%;
 }
 
-input[type=password] {
-    background-color: #ffffff
+input[type="text"] {
+  background-color: #ffffff;
+  input-focus-border-color: black;
 }
 
-input[type=email] {
-    background-color: #ffffff
+input[type="password"] {
+  background-color: #ffffff;
 }
 
+input[type="email"] {
+  background-color: #ffffff;
+}
 
 .column {
-    float: left;
-    width: 50%;
+  float: left;
+  width: 50%;
 }
 
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-    display:block;
-  }
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  display: block;
+}
 
-  .column1{
-    float: left;
-    width: 30%;
-  }
-  
-  .column2{
-    float: right;
-  }
+.column1 {
+  float: left;
+  width: 30%;
+}
 
+.column2 {
+  float: right;
+}
 
+.gradient-box {
+  width: auto;
+  height: 120px;
+  background: linear-gradient(to bottom, #09e294, #00c1cd);
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: top;
+}
 
-.gradient-box{
-    width:auto ;
-    height: 120px;
-    background: linear-gradient(to bottom, #09E294 , #00C1CD);
-    border-radius: 20px 20px 0 0;
+.form-box {
+  border: 2px solid #cdc3c3;
+  border-radius: 20px;
+  width: 800px;
+  height: 700px;
+  box-shadow: 10px 10px 8px 2px #dfdddd;
+}
+
+.profilePage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-pic {
+  position: absolute;
+  top: 60px;
+  width: 150px;
+  height: auto;
+  border-radius: 50%;
+  display: flex;
+}
+
+.mydetails-container {
+  width: 600px;
+  height: auto;
+  margin-top: 90px;
+  margin-left: 120px;
+}
+
+.buttons {
+  position: static;
+  align-items: center;
+  justify-content: end;
+}
+
+.changepwd {
+  background-color: #fff;
+  border: 1px solid #d5d9d9;
+  border-radius: 8px;
+  box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
+  box-sizing: border-box;
+  color: #0f1111;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 29px;
+  padding: 0 10px 0 11px;
+  margin-top: 10px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.changepwd:hover {
+  background-color: #f7fafa;
+}
+
+.changepwd:focus {
+  border-color: #008296;
+  box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
+  outline: 0;
+}
+
+.column-justify{
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
-    float: top;
-}
-
-.form-box{
-    border: 2px solid #cdc3c3;
-    border-radius: 20px;
-    width: 800px;
-    height: 700px;    
-    box-shadow: 10px 10px 8px 2px #dfdddd;
-    
-}
-
-.profilePage{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-content: center;
-}
-
-.profile-pic{
-    position: absolute;
-    top: 60px;
-    width: 150px;
-    height: auto;
-    border-radius: 50%;
-    display: flex;
-}
-
-.mydetails-container{
-    width: 600px;
-    height: auto;
-    margin-top: 90px;
-    margin-left: 120px;
-
-}
-
-.buttons{
-    position: static;
-    align-items:center;
-    justify-content: end;
 }
