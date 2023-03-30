@@ -7,6 +7,9 @@ tr{
 }
 
 .table.is-hoverable {
+    table{
+        color: #f5f5f5;
+    }
     tbody {
         tr {
             &:hover {

@@ -8,7 +8,19 @@ const PickRepositories = () => {
   const [data, setData] = useState([]);
   const location = useLocation();
 
-  const handleClickAdd = () => {};
+  const handleClickAdd = () => {
+    axios
+      .post("http://localhost:8080/user/addRepo", {
+        user: user,
+        repo: repo,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     axios
@@ -52,7 +64,7 @@ const PickRepositories = () => {
                       </li>
                     </ul>
                   </div>
-                  {data.length > 0 ? (
+                  {!(user && repo) ? (
                     <>
                       <h1 className="title is-5 has-text-left ml-6">
                         Pick a repository from GitHub
@@ -109,9 +121,7 @@ const PickRepositories = () => {
                               <tr>
                                 <td>
                                   <NavLink
-                                    to={
-                                      location.pathname + "/" + repo.full_name
-                                    }
+                                    to={location.pathname + repo.full_name}
                                   >
                                     <span className="icon">
                                       <i className="fab fa-github"></i>
