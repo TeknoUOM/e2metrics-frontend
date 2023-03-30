@@ -4,7 +4,7 @@ import HomePage from "./screens/HomePage";
 import LoginPage from "./screens/LoginPage";
 import SignUpPage from "./screens/SignUpPage";
 import { useAuthContext } from "@asgardeo/auth-react";
-import Payment from "./screens/Payment/Payment";
+import Payment from "./screens/Payment/PaymentPage";
 import { Payhere, AccountCategory } from "payhere-js-sdk";
 import FeaturePage from "./screens/FeaturePage/FeaturePage";
 import PricePage from "./screens/PricePage/PricePage";

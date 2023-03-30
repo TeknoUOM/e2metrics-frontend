@@ -1,26 +1,37 @@
-import React, { useEffect } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link, useParams, useLocation, NavLink } from "react-router-dom";
 import "./Index.scss";
 
 const PickRepositories = () => {
   let { user, repo } = useParams();
+  const [data, setData] = useState([]);
   const location = useLocation();
-  const data = [
-    {
-      id: 1,
-      user: "MasterD98",
-      repo: "simplefolio",
-    },
-    {
-      id: 2,
-      user: "MasterD98",
-      repo: "FinalYear",
-    },
-  ];
 
   const handleClickAdd = () => {
-    console.log("done");
+    axios
+      .post("http://localhost:8080/user/addRepo", {
+        user: user,
+        repo: repo,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/user/getAllRepos")
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <>
@@ -48,7 +59,7 @@ const PickRepositories = () => {
                       <li className="is-active">
                         <a>Pick a repository</a>
                       </li>
-                      <li className={user && repo ? "is-active" : ""}>
+                      <li className={data.length > 0 ? "is-active" : ""}>
                         <a>Add To E2metrics</a>
                       </li>
                     </ul>
@@ -71,7 +82,7 @@ const PickRepositories = () => {
                                 <span className="icon">
                                   <i className="fab fa-github"></i>
                                 </span>
-                                <span>{data[0].user}</span>
+                                <span>Dasith</span>
                                 <span class="icon is-small">
                                   <i
                                     class="fas fa-angle-down"
@@ -110,18 +121,12 @@ const PickRepositories = () => {
                               <tr>
                                 <td>
                                   <NavLink
-                                    to={
-                                      location.pathname +
-                                      "/" +
-                                      repo.user +
-                                      "/" +
-                                      repo.repo
-                                    }
+                                    to={location.pathname + repo.full_name}
                                   >
                                     <span className="icon">
                                       <i className="fab fa-github"></i>
                                     </span>
-                                    {repo.user}/<b>{repo.repo}</b>
+                                    {repo.full_name}
                                   </NavLink>
                                 </td>
                               </tr>
@@ -133,7 +138,7 @@ const PickRepositories = () => {
                   ) : (
                     <>
                       <h1 className="title is-5 has-text-left ml-6">
-                        {"Add " + user + "/" + repo + " To E2metrics"}
+                        {"Add " + data.full_name + " To E2metrics"}
                       </h1>
                       <button
                         class="button is-large"
