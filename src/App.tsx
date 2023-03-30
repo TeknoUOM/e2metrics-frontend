@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter, Route, Switch } from "react-router-dom";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 import HomePage from "./screens/HomePage";
 import LoginPage from "./screens/LoginPage";
 import SignUpPage from "./screens/SignUpPage";
@@ -11,19 +11,14 @@ import PricePage from "./screens/PricePage/PricePage";
 import PaymentPage from "./screens/Payment/PaymentPage";
 import AddRepositories from "./screens/AddRepositories/Index";
 import PickRepositories from "./screens/PickRepository/Index";
+import Dashboard from "./screens/Dashboard/Dashboard";
 
 function App() {
-  Payhere.init(
-    "1222632",
-    AccountCategory.SANDBOX,
-    "MTg3MTQwNzgwMjEzNTEyOTQxODkyMTM2Mjk2Njc0ODA5NjEyODgy"
-  );
-
   const { state } = useAuthContext();
 
   return (
     <div id="payhere-modal">
-      <HashRouter>
+      <BrowserRouter>
         <Switch>
           <Route
             exact
@@ -46,8 +41,9 @@ function App() {
           <Route exact path="/feature" component={FeaturePage}></Route>
           <Route exact path="/price" component={PricePage}></Route>
           <Route exact path="/checkout" component={PaymentPage}></Route>
+          <Route exact path="/dashboard" component={Dashboard}></Route>
         </Switch>
-      </HashRouter>
+      </BrowserRouter>
     </div>
   );
 }
