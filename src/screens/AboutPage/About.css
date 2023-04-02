@@ -1,0 +1,79 @@
+
+.container-box{
+  width: auto;
+  height: 38vw;
+  background-image: linear-gradient(to bottom right , #09e294, #00c1cd);
+  display: flex;
+
+
+}
+
+.header{
+  margin-top: 10%;
+  margin-left: 8% ;
+  font-size: 3em;
+}
+
+.content-main{
+  margin-top: 5%;
+  margin-left: 8%;
+}
+
+.GetStartedNow{
+
+background-color: #061d62;
+border: 2px solid #061d62;
+border-radius: 15px;
+box-sizing: border-box;
+color: #FFFFFF;
+cursor: pointer;
+display: block;
+font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+font-size: 2vw;
+font-weight: 600;
+line-height: normal;
+height: 3em;
+width: 50%;
+outline: none;
+margin-top: 5%;
+margin-left: 0%;
+text-align: center;
+text-decoration: none;
+transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+user-select: none;
+touch-action: manipulation;
+will-change: transform;
+
+max-width: 50%;
+max-height: 50%;
+}
+
+GetStartedNow:disabled {
+pointer-events: none;
+}
+
+.GetStartedNow:hover {
+box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+transform: translateY(-2px);
+}
+
+GetStartedNow:active {
+box-shadow: none;
+transform: translateY(0);
+}
+
+.image1{
+  width: 85%;
+  margin-top: 13%;
+  margin-left: 8%;
+  height: auto;
+}
+
+.content-1 {
+margin: 18% 18% 0 ;
+}
+
+hr.hrLine {
+margin: 5% 10% 5% 10%;
+border: 1px solid rgb(100, 100, 100);
+}

@@ -11,6 +11,7 @@ import Reports from "./screens/Settings/Pages/Reports";
 import Plan from "./screens/Settings/Pages/Plan";
 import Billing from "./screens/Settings/Pages/Billing";
 import Help from "./screens/Settings/Pages/Help";
+import About from "./screens/AboutPage/About";
 
 function App() {
   const { state, signIn, signOut } = useAuthContext();
@@ -19,6 +20,7 @@ function App() {
     <>
       <HashRouter>
         <Switch>
+
           <Route
             exact
             path="/"
@@ -31,6 +33,7 @@ function App() {
           <Route path="/settings/plan" children={<Plan />} />
           <Route path="/settings/billing" children={<Billing />} />
           <Route path="/settings/help" children={<Help />} />
+          <Route path="/about" component={About} ></Route>
         </Switch>
       </HashRouter>
     </>
