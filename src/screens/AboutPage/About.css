@@ -1,7 +1,7 @@
 
 .container-box{
   width: auto;
-  height: 38vw;
+  height: 51vw;
   background-image: linear-gradient(to bottom right , #09e294, #00c1cd);
   display: flex;
 
@@ -9,8 +9,8 @@
 }
 
 .header{
-  margin-top: 10%;
-  margin-left: 8% ;
+  margin-top: 20%;
+  margin-left: 7% ;
   font-size: 3em;
 }
 
@@ -35,7 +35,7 @@ line-height: normal;
 height: 3em;
 width: 50%;
 outline: none;
-margin-top: 5%;
+margin-top: 14%;
 margin-left: 0%;
 text-align: center;
 text-decoration: none;
@@ -64,7 +64,7 @@ transform: translateY(0);
 
 .image1{
   width: 85%;
-  margin-top: 13%;
+  margin-top: 30%;
   margin-left: 8%;
   height: auto;
 }
@@ -76,4 +76,16 @@ margin: 18% 18% 0 ;
 hr.hrLine {
 margin: 5% 10% 5% 10%;
 border: 1px solid rgb(100, 100, 100);
+}
+
+.faq-box {
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin: 0 50%;
+  margin-bottom: 20px;
 }

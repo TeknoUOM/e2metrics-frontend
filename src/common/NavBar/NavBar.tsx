@@ -28,7 +28,7 @@ function NavBar() {
                         </div>
 
                         <div className="navbar-end">
-                            <Link className="navbar-item ml-4" to="#">
+                            <Link className="navbar-item ml-4" to="/about">
                                 About
                             </Link>
                             <Link className="navbar-item ml-4" to="#">

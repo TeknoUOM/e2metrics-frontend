@@ -27,6 +27,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-phone-number-input": "^3.2.19",
+    "react-responsive-carousel": "^3.2.23",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.3.4",
     "react-scripts": "^5.0.1",

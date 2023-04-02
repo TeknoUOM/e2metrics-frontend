@@ -5,18 +5,18 @@ import "./FAQ.css";
 function FAQ () {
   const [faqs, setfaqs] = useState([
     {
-      question: 'What can you gain by our GitHub dashboard',
-      answer: 'There are several reasons. ',
-      open: true
-    },
-    {
-      question: 'What is the purpose?',
-      answer: ' The users can manage and analyze their Git repositories for effective and efficient project management. ',
+      question: 'What kind of metrics can I track using your GitHub dashboard?',
+      answer: 'Our dashboard provides a wide range of metrics related to your GitHub activity, including code commits, pull requests, issues, and more. ',
       open: false
     },
     {
-      question: 'What the payment tiers?',
-      answer: ' Free, Basic, and premium',
+      question: 'Is it possible to compare my metrics with those of other users or organizations?',
+      answer: ' Yes, our dashboard allows you to compare your metrics with those of other users or organizations, providing valuable insights into your performance. ',
+      open: false
+    },
+    {
+      question: 'How secure is your platform?',
+      answer: ' We take security very seriously and employ industry-standard measures to ensure the safety and privacy of our users data.',
       open: false
     }
   ]);

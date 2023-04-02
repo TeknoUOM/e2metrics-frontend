@@ -1,0 +1,93 @@
+
+
+.feedback-carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #ffffff;
+    overflow-x: hidden;
+  }
+  
+  .feedback-card-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 0 auto;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .feedback-card {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    width: 30%;
+  }
+  
+  .feedback-card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  .feedback-card-description {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .feedback-card-name {
+    font-size: 0.8rem;
+    font-style: italic;
+    text-align: right;
+  }
+  
+  .feedback-carousel-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    max-width: 900px;
+    margin: 1rem auto 0 auto;
+    width: 100%;
+  }
+  
+  .button {
+    background-color: #3273dc;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    font-size: 1rem;
+  }
+  
+  .button:hover {
+    background-color: #2043a9;
+  }
+  
+  @media screen and (max-width: 960px) {
+    .feedback-card-container {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .feedback-card {
+      width: 45%;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .feedback-card-container {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .feedback-card {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    .feedback-carousel-buttons {
+      margin-top: 0.5rem;
+    }
+  }
+  
