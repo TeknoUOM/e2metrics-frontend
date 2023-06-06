@@ -5,8 +5,10 @@ import Swal from "sweetalert2";
 import PhoneInput from "react-phone-number-input";
 import Sidebar from "../Sidebar";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import axios from "axios";
 
 function MyDetails() {
+  const [userDetails, setUserDetails] = useState({});
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [mobile, setMobile] = useState("");
@@ -16,6 +18,22 @@ function MyDetails() {
   const [emailError, setEmailError] = useState("");
   const [isEditable, setIsEditable] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/primitive2/userDetails")
+      .then((response) => {
+        setUserDetails(response.data);
+        console.log(response.data);
+        setFirstName(response.data.name.name.givenName);
+        setEmail(response.data.name.emails);
+        setLastName(response.data.name.name.familyName);
+        setMobile(response.data.name.phoneNumbers[0].value);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const handleTogglePasswordVisibility = () => {
     setIsPasswordVisible((prevState) => !prevState);
@@ -47,10 +65,15 @@ function MyDetails() {
           Swal.showValidationMessage("Please fill in all fields");
         } else if (newPassword !== confirmPassword) {
           Swal.showValidationMessage("Passwords do not match");
-        } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,30}$/.test(newPassword)) {
-            Swal.showValidationMessage("New password must be between 8 and 30 characters and include at least 1 uppercase, 1 lowercase, 1 number, and 1 special character");
+        } else if (
+          !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,30}$/.test(
+            newPassword
+          )
+        ) {
+          Swal.showValidationMessage(
+            "New password must be between 8 and 30 characters and include at least 1 uppercase, 1 lowercase, 1 number, and 1 special character"
+          );
         }
-  
 
         return { oldPassword: oldPassword, newPassword: newPassword };
       },
@@ -122,10 +145,10 @@ function MyDetails() {
               className="mydetails-container"
               onSubmit={isEditable ? handleSubmit : undefined}
             >
-              <div class="field" >
-                <div className="row column-justify" >
-                  <div class="column is-one-third is-paddingless is-grouped " >
-                    <label  for="Fname">First Name:</label>
+              <div class="field">
+                <div className="row column-justify">
+                  <div class="column is-one-third is-paddingless is-grouped ">
+                    <label for="Fname">First Name:</label>
                     <div className="control has-icons-left has-icons-right">
                       <input
                         className="input is-primary"
@@ -207,14 +230,14 @@ function MyDetails() {
                           }}
                           onClick={handleTogglePasswordVisibility}
                         >
-                          {isPasswordVisible ? < FaEye/> : <FaEyeSlash />}
+                          {isPasswordVisible ? <FaEye /> : <FaEyeSlash />}
                         </div>
                       )}
                     </div>
 
                     <button
                       type="button"
-                      onClick={handleChangePassword}
+                      onClick={() => isEditable && handleChangePassword()}
                       className="changepwd"
                     >
                       Change Password
