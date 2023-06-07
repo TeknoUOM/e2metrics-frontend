@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import HomePage from "./screens/HomePage";
@@ -13,6 +12,13 @@ import PaymentPage from "./screens/Payment/PaymentPage";
 import AddRepositories from "./screens/AddRepositories/Index";
 import PickRepositories from "./screens/PickRepository/Index";
 import Dashboard from "./screens/Dashboard/Dashboard";
+import MyDetails from "./screens/Settings/Pages/MyDetails";
+import Notifications from "./screens/Settings/Pages/Notifications";
+import Reports from "./screens/Settings/Pages/Reports";
+import Plan from "./screens/Settings/Pages/Plan";
+import Billing from "./screens/Settings/Pages/Billing";
+import Help from "./screens/Settings/Pages/Help";
+import Repository from "./screens/Dashboard/Repository";
 
 function App() {
   const { state } = useAuthContext();
@@ -43,6 +49,13 @@ function App() {
           <Route exact path="/price" component={PricePage}></Route>
           <Route exact path="/checkout" component={PaymentPage}></Route>
           <Route exact path="/dashboard" component={Dashboard}></Route>
+          <Route path="/settings/mydetails" children={<MyDetails />} />
+          <Route path="/settings/notifications" children={<Notifications />} />
+          <Route path="/settings/reports" children={<Reports />} />
+          <Route path="/settings/plan" children={<Plan />} />
+          <Route path="/settings/billing" children={<Billing />} />
+          <Route path="/settings/help" children={<Help />} />
+          <Route path="/dashboard/repositories" children={<Repository />} />
         </Switch>
       </BrowserRouter>
     </div>
