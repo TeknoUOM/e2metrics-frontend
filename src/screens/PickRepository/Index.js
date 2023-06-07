@@ -19,6 +19,7 @@ const PickRepositories = () => {
   const [filterText, setFilterText] = useState("");
   const userId = sessionStorage.getItem("userId");
   const ghUsername = sessionStorage.getItem("ghUsername");
+  const [existingRepos, setExistingRepos] = useState([]);
   const history = useHistory();
 
   const handleClickAdd = () => {
@@ -45,6 +46,14 @@ const PickRepositories = () => {
 
   useEffect(() => {
     setLoading(true);
+    axios
+      .get(`http://localhost:8080/user/getUserAllRepos?userId=${userId}`)
+      .then((res) => {
+        setExistingRepos(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     axios
       .get(`https://api.github.com/user/repos`, {
         headers: {
@@ -80,7 +89,8 @@ const PickRepositories = () => {
   const filteredItems = data.filter(
     (item) =>
       item.name &&
-      item.name.toString().toLowerCase().includes(filterText.toLowerCase())
+      item.name.toString().toLowerCase().includes(filterText.toLowerCase()) &&
+      !existingRepos.includes(item.name && item.name.toString())
   );
 
   const onRowClicked = (e) => {
