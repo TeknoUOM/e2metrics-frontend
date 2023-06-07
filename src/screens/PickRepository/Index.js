@@ -27,6 +27,7 @@ const PickRepositories = () => {
       .get("http://localhost:8080/user/getAllRepos")
       .then((res) => {
         setData(res.data);
+        
       })
       .catch((err) => {
         console.log(err);

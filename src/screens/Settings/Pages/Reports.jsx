@@ -7,6 +7,7 @@ const Reports = () => {
     <Sidebar>
       <div>
         <div className="field">
+          
           <input
             id="switchRoundedOutlinedDefault"
             type="checkbox"

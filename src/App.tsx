@@ -18,6 +18,7 @@ import Reports from "./screens/Settings/Pages/Reports";
 import Plan from "./screens/Settings/Pages/Plan";
 import Billing from "./screens/Settings/Pages/Billing";
 import Help from "./screens/Settings/Pages/Help";
+import Repository from "./screens/Dashboard/Repository";
 
 function App() {
   const { state } = useAuthContext();
@@ -54,6 +55,7 @@ function App() {
           <Route path="/settings/plan" children={<Plan />} />
           <Route path="/settings/billing" children={<Billing />} />
           <Route path="/settings/help" children={<Help />} />
+          <Route path="/dashboard/repositories" children={<Repository />} />
         </Switch>
       </BrowserRouter>
     </div>
