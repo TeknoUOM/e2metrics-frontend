@@ -1,19 +1,27 @@
 .gradient-button {
-    background-color: #3CE794 !important;
-    border-radius: 1rem !important;
-    padding: 1.5rem 2rem !important;
-    font-weight: 700;
-    -webkit-box-shadow: 0px 10px 20px 0px rgba(92, 210, 160, 0.46) !important;
-    box-shadow: 0px 10px 20px 0px rgba(92, 210, 160, 0.46) !important;
+  background-color: #3ce794 !important;
+  border-radius: 1rem !important;
+  padding: 1.5rem 2rem !important;
+  font-weight: 700;
+  -webkit-box-shadow: 0px 10px 20px 0px rgba(92, 210, 160, 0.46) !important;
+  box-shadow: 0px 10px 20px 0px rgba(92, 210, 160, 0.46) !important;
+}
+.danger-button {
+  background-color: #d9534f !important;
+  border-radius: 1rem !important;
+  padding: 1.5rem 2rem !important;
+  font-weight: 700;
+  -webkit-box-shadow: 0px 10px 20px 0px rgba(92, 210, 160, 0.46) !important;
+  box-shadow: 0px 10px 20px 0px rgba(92, 210, 160, 0.46) !important;
 }
 
 .main-image {
-    -webkit-box-shadow: 0px 10px 35px 0px rgba(92, 210, 160, 0.46) !important;
-    box-shadow: 0px 10px 35px 0px rgba(92, 210, 160, 0.46) !important;
+  -webkit-box-shadow: 0px 10px 35px 0px rgba(92, 210, 160, 0.46) !important;
+  box-shadow: 0px 10px 35px 0px rgba(92, 210, 160, 0.46) !important;
 }
 
-.main-content{
-    display: flex !important;
-    flex-wrap: wrap !important;
-    align-content: center !important;
+.main-content {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-content: center !important;
 }

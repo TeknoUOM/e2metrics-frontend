@@ -4,16 +4,16 @@ import Checkout from "./Checkout";
 
 const initialOptions = {
   "client-id":
-    "AT-Rj6Oh2btsnI2uFgdaT9Lx_9TBFPdWxvvN19HhapgM_L3FTsGtqeM_wjHY0SS8YzsPonUFnBMdQrG7",
+    "AW59l_XjymaJXaL1Rd8HseIIfQZB-sf1V-R11AT5I52ANTD_bFzXdFCSifhCek8Wu-JING1RhHFjyNbK",
   currency: "USD",
   intent: "capture",
 };
 
-const Payment = () => {
+const Payment = ({ plan, amount, basis }) => {
   return (
     <>
       <PayPalScriptProvider options={initialOptions}>
-        <Checkout />
+        <Checkout plan={plan} amount={amount} basis={basis} />
       </PayPalScriptProvider>
       x
     </>

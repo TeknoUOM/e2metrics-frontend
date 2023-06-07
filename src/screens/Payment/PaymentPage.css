@@ -1,7 +1,9 @@
-.payment-deatils-card{
-    width: 60vw;
+.payment-deatils-card {
+  width: 60vw;
 }
 
-.payment-card{
-    width: 30vw;
+.payment-card {
+  width: 30vw;
+  text-align: center;
+  margin: auto;
 }

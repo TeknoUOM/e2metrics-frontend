@@ -2,11 +2,17 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useLocation, NavLink } from "react-router-dom";
 import "./Index.scss";
+import Dropdown from "react-dropdown";
+import DataTable from "react-data-table-component";
+import "react-dropdown/style.css";
 
 const PickRepositories = () => {
   let { user, repo } = useParams();
   const [data, setData] = useState([]);
+  const [repos, setRepos] = useState({});
+  const [options, setOption] = useState([]);
   const location = useLocation();
+  const userId = sessionStorage.getItem("userId");
 
   const handleClickAdd = () => {
     axios
@@ -24,14 +30,53 @@ const PickRepositories = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/user/getAllRepos")
+      .get(`https://api.github.com/user/repos`, {
+        headers: {
+          Authorization: "Bearer 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",
+          Accept: "application/vnd.github.v3+json",
+          "X-GitHub-Api-Version": "2022-11-28",
+        },
+      })
       .then((res) => {
-        setData(res.data);
+        //get owners without duplicates
+        let repos = {};
+        let owners = [...new Set(res.data.map((repo) => repo.owner.login))];
+        setOption(owners);
+        owners.forEach((owner) => {
+          repos[owner] = res.data.filter((repo) => {
+            return repo.owner.login == owner;
+          });
+        });
+        setRepos(repos);
+        setData(repos["MasterD98"]);
+        console.log(repos);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
+  const defaultOption = "MasterD98";
+  const handleOnChange = (e) => {
+    setData(repos[e.value]);
+  };
+
+  const onRowClicked = (e) => {
+    console.log(e);
+  };
+
+  const ghToken = getUserGithubToken();
+
+  const getUserGithubToken = () => {
+    axios
+      .get(`/getUserGithubToken?userId=${userId}`)
+      .then((res) => {
+        return res.data.ghToken;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
   return (
     <>
@@ -74,66 +119,36 @@ const PickRepositories = () => {
                         <b>E2metrics</b>. When you push to Git,We run Metrics
                         calculation daily and show you result.
                       </p>
-                      <table class="table is-hoverable">
-                        <thead className="table-header">
-                          <div class="dropdown">
-                            <div class="dropdown-trigger">
-                              <button class="button" style={{ border: "none" }}>
-                                <span className="icon">
-                                  <i className="fab fa-github"></i>
-                                </span>
-                                <span>Dasith</span>
-                                <span class="icon is-small">
-                                  <i
-                                    class="fas fa-angle-down"
-                                    aria-hidden="true"
-                                  ></i>
-                                </span>
-                              </button>
-                            </div>
-                            <div
-                              class="dropdown-menu"
-                              id="dropdown-menu"
-                              role="menu"
-                            >
-                              <div class="dropdown-content">
-                                <a href="#" class="dropdown-item">
-                                  Dropdown item
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                          <p class="control has-icons-left">
-                            <input
-                              class="input"
-                              type="text"
-                              placeholder="Search repos"
-                            />
-                            <span class="icon is-small is-left">
-                              <i class="fas fa fa-search"></i>
-                            </span>
-                          </p>
-                        </thead>
-                        <hr className="m-2" />
-                        <tbody className="">
-                          {data.map((repo) => {
-                            return (
-                              <tr>
-                                <td>
-                                  <NavLink
-                                    to={location.pathname + repo.full_name}
-                                  >
-                                    <span className="icon">
-                                      <i className="fab fa-github"></i>
-                                    </span>
-                                    {repo.full_name}
-                                  </NavLink>
-                                </td>
-                              </tr>
-                            );
-                          })}
-                        </tbody>
-                      </table>
+                      <div className="table-header">
+                        <Dropdown
+                          className="dropdown dropdown-trigger"
+                          options={options}
+                          value={defaultOption}
+                          onChange={handleOnChange}
+                          placeholder="Select an option"
+                        />
+                        <p className="control has-icons-left">
+                          <input
+                            className="input"
+                            type="text"
+                            placeholder="Search repos"
+                          />
+                          <span className="icon is-small is-left">
+                            <i className="fas fa fa-search"></i>
+                          </span>
+                        </p>
+                      </div>
+                      <DataTable
+                        columns={[{ name: "", selector: (row) => row.name }]}
+                        data={data}
+                        pagination={true}
+                        paginationPerPage={5}
+                        highlightOnHover
+                        onRowClicked={onRowClicked}
+                        pointerOnHover={true}
+                        noHeader={true}
+                        noTableHead
+                      />
                     </>
                   ) : (
                     <>
@@ -141,12 +156,12 @@ const PickRepositories = () => {
                         {"Add " + data.full_name + " To E2metrics"}
                       </h1>
                       <button
-                        class="button is-large"
+                        className="button is-large"
                         style={{ backgroundColor: "#3CE794" }}
                         onClick={handleClickAdd}
                       >
-                        <span class="icon is-medium">
-                          <i class="fa fa-plus"></i>
+                        <span className="icon is-medium">
+                          <i className="fa fa-plus"></i>
                         </span>
                         <span>Calculate Metrics</span>
                       </button>

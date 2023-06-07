@@ -1,8 +1,28 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./Index.scss";
+import axios from "axios";
 
 const AddRepositories = () => {
+  const userId = sessionStorage.getItem("userId");
+  const history = useHistory();
+  const ghToken = getUserGithubToken();
+  if (ghToken) {
+    sessionStorage.setItem("ghToken", ghToken);
+  } else {
+    history.push("/authorize");
+  }
+
+  const getUserGithubToken = () => {
+    axios
+      .get(`/getUserGithubToken?userId=${userId}`)
+      .then((res) => {
+        return res.data.ghToken;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
   return (
     <>
       <section className="hero is-fullheight">
