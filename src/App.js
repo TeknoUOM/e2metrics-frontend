@@ -11,7 +11,6 @@ import PaymentPage from "./screens/Payment/PaymentPage";
 import AddRepositories from "./screens/AddRepositories/Index";
 import PickRepositories from "./screens/PickRepository/Index";
 import Dashboard from "./screens/Dashboard/Dashboard";
-import AuthorizeToGithub from "./screens/AuthorizeToGithub/AuthorizeToGithub";
 import LogFirst from "./common/LogFirst/LogFirst";
 
 function App() {
@@ -37,7 +36,6 @@ function App() {
           <Route exact path="/price" component={PricePage}></Route>
           <Route exact path="/checkout" component={PaymentPage}></Route>
           <Route exact path="/dashboard" component={Dashboard}></Route>
-          <Route exact path="/Authorize" component={AuthorizeToGithub}></Route>
           <Route exact path="/LogFirst" component={LogFirst}></Route>
         </Switch>
       </BrowserRouter>
