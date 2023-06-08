@@ -11,18 +11,16 @@ const root = ReactDOM.createRoot(
 );
 
 const config = {
-  signInRedirectURL: "http://localhost:3000/dashboard",
+  signInRedirectURL: "http://localhost:3000/dashboard/overview",
   signOutRedirectURL: "http://localhost:3000",
   clientID: "2C6sgeKa7ZIXInTYmdZg0j3Sf_Ia",
   baseUrl: "https://api.asgardeo.io/t/tekno",
   scope: ["openid", "profile", "address", "email", "groups", "phone"],
 };
 root.render(
-  <React.StrictMode>
-    <AuthProvider config={config}>
-      <App />
-    </AuthProvider>
-  </React.StrictMode>
+  <AuthProvider config={config}>
+    <App />
+  </AuthProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

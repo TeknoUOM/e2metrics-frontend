@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { Route, Switch, BrowserRouter } from "react-router-dom";
+import { Route, Switch, BrowserRouter, Router } from "react-router-dom";
 import HomePage from "./screens/HomePage";
-import LoginPage from "./screens/LoginPage";
-import SignUpPage from "./screens/SignUpPage";
 import { useAuthContext } from "@asgardeo/auth-react";
 import Payment from "./screens/Payment/PaymentPage";
 import FeaturePage from "./screens/FeaturePage/FeaturePage";
@@ -42,6 +40,7 @@ function App() {
               </Route>
 
               <Route exact path="/checkout" component={PaymentPage}></Route>
+              <Route exact path="/dashboard/*" component={Dashboard}></Route>
               <Route exact path="/dashboard" component={Dashboard}></Route>
             </>
           ) : (
