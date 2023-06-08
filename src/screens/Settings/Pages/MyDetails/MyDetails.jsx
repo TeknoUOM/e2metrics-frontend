@@ -1,11 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import "react-phone-number-input/style.css";
 import Swal from "sweetalert2";
 import PhoneInput from "react-phone-number-input";
-import "react-phone-number-input/style.css";
-import Sidebar from "../Sidebar";
+import Sidebar from "../../Sidebar";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from 'axios';
+import ImageUpload from "./changePic"
+
 
 
 function MyDetails() {
@@ -126,11 +128,11 @@ function MyDetails() {
         <div className="profilePage">
           <div className="form-box">
             <div className="gradient-box">
-              <img
-                className="profile-pic"
-                src="https://www.w3schools.com/howto/img_avatar.png"
-                alt=""
-              />
+              
+              <div className="profilepic">
+                <ImageUpload></ImageUpload>
+              </div>
+            
             </div>
 
             <form
