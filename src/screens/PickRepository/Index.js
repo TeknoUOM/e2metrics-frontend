@@ -200,7 +200,7 @@ const PickRepositories = () => {
                             {`Add ${user}/${repo} To E2metrics`}
                           </h1>
                           <button
-                            className={`button is-large ${
+                            className={`button gradient-button ${
                               loading ? "is-loading" : ""
                             }`}
                             style={{ backgroundColor: "#3CE794" }}

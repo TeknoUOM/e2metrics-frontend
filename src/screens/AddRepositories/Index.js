@@ -128,7 +128,7 @@ const AddRepositories = () => {
                       onSuccess={onSuccess}
                       onFailure={onFailure}
                       buttonText="Authorize"
-                      className={`button auth-buttton ${
+                      className={`button gradient-button ${
                         loading ? "is-loading" : ""
                       }`}
                       valid={true}

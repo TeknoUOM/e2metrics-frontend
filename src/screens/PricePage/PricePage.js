@@ -84,7 +84,7 @@ const PricePage = () => {
                             role == roles.FREE ? (
                               <>
                                 <button
-                                  className="button is-large"
+                                  className="button gradient-button"
                                   style={{ backgroundColor: "#3CE794" }}
                                   disabled={true}
                                 >
@@ -94,7 +94,7 @@ const PricePage = () => {
                             ) : (
                               <>
                                 <button
-                                  className="button is-large"
+                                  className="button gradient-button"
                                   style={{ backgroundColor: "#3CE794" }}
                                   onClick={setRoleToFree}
                                 >
@@ -104,7 +104,7 @@ const PricePage = () => {
                             )
                           ) : (
                             <button
-                              className="button is-large"
+                              className="button gradient-button"
                               style={{ backgroundColor: "#3CE794" }}
                               onClick={() => history.push("/LogFirst")}
                             >
@@ -136,7 +136,7 @@ const PricePage = () => {
                           {state.isAuthenticated ? (
                             role == roles.BASIC ? (
                               <button
-                                className="button is-large"
+                                className="button gradient-button"
                                 style={{ backgroundColor: "#3CE794" }}
                                 disabled={true}
                               >
@@ -144,7 +144,7 @@ const PricePage = () => {
                               </button>
                             ) : (
                               <button
-                                className="button is-large"
+                                className="button gradient-button"
                                 style={{ backgroundColor: "#3CE794" }}
                                 onClick={() => {
                                   setLoading(true);
@@ -157,7 +157,7 @@ const PricePage = () => {
                             )
                           ) : (
                             <button
-                              className="button is-large"
+                              className="button gradient-button"
                               style={{ backgroundColor: "#3CE794" }}
                               onClick={() => {
                                 history.push("/LogFirst");
@@ -192,7 +192,7 @@ const PricePage = () => {
                           {state.isAuthenticated ? (
                             role == roles.PREMIUM ? (
                               <button
-                                className="button is-large"
+                                className="button gradient-button"
                                 style={{ backgroundColor: "#3CE794" }}
                                 disabled={true}
                               >
@@ -200,7 +200,7 @@ const PricePage = () => {
                               </button>
                             ) : (
                               <button
-                                className="button is-large"
+                                className="button gradient-button"
                                 style={{ backgroundColor: "#3CE794" }}
                                 onClick={() => {
                                   setLoading(true);
@@ -213,7 +213,7 @@ const PricePage = () => {
                             )
                           ) : (
                             <button
-                              className="button is-large"
+                              className="button gradient-button"
                               style={{ backgroundColor: "#3CE794" }}
                               onClick={() => history.push("/LogFirst")}
                             >
