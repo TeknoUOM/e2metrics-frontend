@@ -41,7 +41,7 @@ function Dashboard() {
         <div className="app">
           <Sidebar
             className="sidebar"
-            isSidebar={isSidebar}git
+            isSidebar={isSidebar}
             username={state.displayName}
           />
           <main className="content">
