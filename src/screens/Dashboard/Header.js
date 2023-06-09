@@ -4,17 +4,21 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import MenuIcon from "@material-ui/icons/Menu";
 import IconButton from "@material-ui/core/IconButton";
-import Brightness4Icon from "@material-ui/icons/Brightness4";
-import Brightness7Icon from "@material-ui/icons/Brightness7";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Badge from "@material-ui/core/Badge";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import LogoutIcon from "@mui/icons-material/Logout";
 import { makeStyles } from "@material-ui/core/styles";
 import { useAuthContext } from "@asgardeo/auth-react";
+import { useHistory } from "react-router-dom";
+import Avatar from "@mui/material/Avatar";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import Divider from "@mui/material/Divider";
+import Tooltip from "@mui/material/Tooltip";
+import PersonAdd from "@mui/icons-material/PersonAdd";
+import Settings from "@mui/icons-material/Settings";
+import Logout from "@mui/icons-material/Logout";
 
 const useStyles = makeStyles((theme) => ({
   appbar: {
@@ -32,16 +36,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Header({
-  handleDrawerToggle,
-  toggleDarkMode,
-  darkMode,
-}) {
+export default function Header({ handleDrawerToggle }) {
   const classes = useStyles();
   const { signOut } = useAuthContext();
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const history = useHistory();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -73,15 +74,6 @@ export default function Header({
           Dashboard
         </Typography>
         <div className={classes.spacer} />
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={toggleDarkMode}
-          edge="start"
-          className={classes.rightIcons}
-        >
-          {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
-        </IconButton>
 
         <IconButton
           color="inherit"
@@ -89,7 +81,7 @@ export default function Header({
           edge="start"
           className={classes.rightIcons}
         >
-          <Badge badgeContent={4} color="secondary">
+          <Badge badgeContent={0} color="secondary">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -107,21 +99,50 @@ export default function Header({
         </IconButton>
 
         <Menu
-          id="basic-menu"
           anchorEl={anchorEl}
+          id="account-menu"
           open={open}
           onClose={handleClose}
-          MenuListProps={{
-            "aria-labelledby": "basic-button",
+          onClick={handleClose}
+          PaperProps={{
+            elevation: 0,
+            sx: {
+              overflow: "visible",
+              filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+              mt: 1.5,
+              "& .MuiAvatar-root": {
+                width: 32,
+                height: 32,
+                ml: -0.5,
+                mr: 1,
+              },
+              "&:before": {
+                content: '""',
+                display: "block",
+                position: "absolute",
+                top: 0,
+                right: 14,
+                width: 10,
+                height: 10,
+                bgcolor: "background.paper",
+                transform: "translateY(-50%) rotate(45deg)",
+                zIndex: 0,
+              },
+            },
           }}
+          transformOrigin={{ horizontal: "right", vertical: "top" }}
+          anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
-          <MenuItem onClick={handleClose}>
-            {" "}
-            <ManageAccountsIcon className="menu-icon" />
-            Account
+          <MenuItem onClick={() => history.push("/settings")}>
+            <ListItemIcon>
+              <Settings fontSize="small" />
+            </ListItemIcon>
+            Settings
           </MenuItem>
           <MenuItem onClick={handleLogout}>
-            <LogoutIcon className="menu-icon" />
+            <ListItemIcon>
+              <Logout fontSize="small" />
+            </ListItemIcon>
             Logout
           </MenuItem>
         </Menu>

@@ -16,21 +16,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const widgetNames = {
-  a: "Lines of Code",
+  totalNumberOfLines: "Lines of Code",
   b: "Number Of Commits",
   c: "Pull Requests Count",
   d: "Opened Isses",
   e: "Weekly Commit Count",
-  f: "F",
-  g: "G",
-  h: "H",
-  i: "I",
-  j: "J",
-  k: "K",
-  l: "L",
-  m: "M",
-  n: "N",
-  o: "O",
+  f: "Issue Fixing Frequency",
+  g: "Bug Fix Ratio",
+  h: "Fix Issue Lead Time",
+  i: "Pull Request Frequency",
+  j: "Pull Request Response Time",
+  k: "Total Issues",
+  l: "Weekly Pull Request Count",
+  m: "Won't Fix Issue Ratio",
+  n: "Pull Request Lead Time",
+  o: "Issue Response Time",
 };
 
 export default function AddList({

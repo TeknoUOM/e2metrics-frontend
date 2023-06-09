@@ -5,6 +5,8 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import { CardContent, CardActions, Button } from "@material-ui/core";
+import ShowChartIcon from "@mui/icons-material/ShowChart";
+import StatBox from "./StatBox";
 
 const useStyles = makeStyles({
   root: {
@@ -27,39 +29,44 @@ const useStyles = makeStyles({
 });
 
 const widgetNames = {
-  a: "A",
-  b: "B",
-  c: "C",
-  d: "D",
+  totalNumberOfLines: "Lines of Code",
+  b: "Number Of Commits",
+  c: "Pull Requests Count",
+  d: "Opened Isses",
+  e: "Weekly Commit Count",
+  f: "Issue Fixing Frequency",
+  g: "Bug Fix Ratio",
+  h: "Fix Issue Lead Time",
+  i: "Pull Request Frequency",
+  j: "Pull Request Response Time",
+  k: "Total Issues",
+  l: "Weekly Pull Request Count",
+  m: "Won't Fix Issue Ratio",
+  n: "Pull Request Lead Time",
+  o: "Issue Response Time",
 };
-export default function Widget({ id, onRemoveItem }) {
+export default function Widget({ id, onRemoveItem, value = 0, loading }) {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
       <div className={classes.header}>
-        <Typography sx={{ fontSize: 14 }} variant="h5" color="text.secondary">
-          Commit count
-        </Typography>
         <div className={classes.spacer} />
-        <IconButton aria-label="delete" onClick={() => onRemoveItem(id)}>
+        <IconButton
+          style={{ padding: "0px" }}
+          aria-label="delete"
+          onClick={() => onRemoveItem(id)}
+        >
           <CloseIcon fontSize="small" />
         </IconButton>
       </div>
 
       <div className={classes.body}>
-        <CardContent>
-          <Typography variant="h5" component="div">
-            aa
-          </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            adjective
-          </Typography>
-          <Typography variant="body2">
-            well meaning and kindly.
-            <br />
-            {'"a benevolent smile"'}
-          </Typography>
-        </CardContent>
+        <StatBox
+          subtitle={widgetNames[id]}
+          title={value}
+          icon={<ShowChartIcon />}
+          loading={loading}
+        />
       </div>
     </Card>
   );

@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Responsive as ResponsiveGridLayout } from "react-grid-layout";
 import { withSize } from "react-sizeme";
 import TopBar from "./TopBar";
 import Widget from "./Widget";
+import SelectRepo from "./SelectRepo";
+import axios from "axios";
+import Loading from "../../common/Loading/Loading";
 
 const originalItems = [
-  "a",
+  "totalNumberOfLines",
   "b",
   "c",
   "d",
@@ -24,7 +27,7 @@ const originalItems = [
 
 const initialLayouts = {
   lg: [
-    { i: "a", x: 0, y: 0, w: 2, h: 3, isResizable: false },
+    { i: "totalNumberOfLines", x: 0, y: 0, w: 2, h: 3, isResizable: false },
     { i: "b", x: 2, y: 0, w: 2, h: 3, isResizable: false },
     { i: "c", x: 4, y: 0, w: 2, h: 3, isResizable: false },
     { i: "d", x: 6, y: 0, w: 2, h: 3, isResizable: false },
@@ -41,7 +44,9 @@ const initialLayouts = {
     { i: "o", x: 8, y: 6, w: 4, h: 5, isResizable: false },
   ],
 };
-function Content({ size: { width } }) {
+function Content({ size: { width }, editLayout }) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [items, setItems] = useState(originalItems);
   const [layouts, setLayouts] = useState(
     getFromLS("layouts") || initialLayouts
@@ -60,15 +65,32 @@ function Content({ size: { width } }) {
     setItems([...items, itemId]);
   };
 
+  useEffect(() => {
+    //setLoading(true);
+    axios
+      .get(`http://localhost:8080/getPerfomances?userId=${""}`)
+      .then((res) => {
+        setData(res.data[0]);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <>
-      <TopBar
-        onLayoutSave={onLayoutSave}
-        items={items}
-        onRemoveItem={onRemoveItem}
-        onAddItem={onAddItem}
-        originalItems={originalItems}
-      />
+      {editLayout ? (
+        <TopBar
+          onLayoutSave={onLayoutSave}
+          items={items}
+          onRemoveItem={onRemoveItem}
+          onAddItem={onAddItem}
+          originalItems={originalItems}
+        />
+      ) : (
+        <SelectRepo />
+      )}
       <ResponsiveGridLayout
         className="layout"
         layouts={layouts}
@@ -90,6 +112,8 @@ function Content({ size: { width } }) {
               id={key}
               onRemoveItem={onRemoveItem}
               backgroundColor="#867ae9"
+              value={data && data[key]}
+              loading={loading}
             />
           </div>
         ))}
@@ -119,4 +143,5 @@ function saveToLS(key, value) {
       })
     );
   }
+  console.log(global.localStorage.getItem("rgl-8-overview"));
 }

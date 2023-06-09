@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Drawer from "@material-ui/core/Drawer";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
@@ -13,6 +13,7 @@ import CompareIcon from "@mui/icons-material/Compare";
 import ForecastIcon from "@mui/icons-material/Timeline";
 import SettingsIcon from "@material-ui/icons/Settings";
 import { Link, useRouteMatch } from "react-router-dom";
+import { Button } from "@material-ui/core";
 
 const drawerWidth = 240;
 
@@ -31,11 +32,27 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
     justifyContent: "flex-end",
   },
+  bottomPush: {
+    position: "fixed",
+    bottom: 10,
+    textAlign: "center",
+    paddingBottom: 10,
+  },
 }));
 
-export default function ({ open, handleDrawerClose, tab }) {
+export default function ({
+  open,
+  handleDrawerClose,
+  tab,
+  editLayout,
+  setEditLayout,
+}) {
   const classes = useStyles();
   const { url, path } = useRouteMatch();
+
+  const handleClick = () => {
+    setEditLayout(!editLayout);
+  };
 
   return (
     <Drawer
@@ -83,7 +100,7 @@ export default function ({ open, handleDrawerClose, tab }) {
         </List>
         <Divider />
         <List>
-          <Link to={"/Setting"}>
+          <Link to={"/settings"}>
             <ListItem button>
               <ListItemIcon>
                 <SettingsIcon />
@@ -92,6 +109,15 @@ export default function ({ open, handleDrawerClose, tab }) {
             </ListItem>
           </Link>
         </List>
+      </div>
+      <div className={classes.bottomPush}>
+        <Button
+          className="button gradient-button"
+          onClick={handleClick}
+          style={{ left: editLayout ? 60 : 40 }}
+        >
+          {editLayout ? "Done" : "Edit Layout"}
+        </Button>
       </div>
     </Drawer>
   );

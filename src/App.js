@@ -12,6 +12,7 @@ import PickRepositories from "./screens/PickRepository/Index";
 import Dashboard from "./screens/Dashboard/Dashboard";
 import LogFirst from "./common/LogFirst/LogFirst";
 import "./App.css";
+import UnderConstruction from "./common/UnderConstruction/UnderConstruction";
 
 function App() {
   const { state } = useAuthContext();
@@ -38,7 +39,12 @@ function App() {
               <Route exact path="/addRepositories/repos">
                 <PickRepositories />
               </Route>
-
+              <Route exact path="/settings">
+                <UnderConstruction feature="Settings" backButton={true} />
+              </Route>
+              <Route exact path="/settings/*">
+                <UnderConstruction feature="Settings" backButton={true} />
+              </Route>
               <Route exact path="/checkout" component={PaymentPage}></Route>
               <Route exact path="/dashboard/*" component={Dashboard}></Route>
               <Route exact path="/dashboard" component={Dashboard}></Route>

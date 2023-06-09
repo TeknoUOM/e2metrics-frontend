@@ -1,12 +1,6 @@
 import { useAuthContext } from "@asgardeo/auth-react";
 import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  useHistory,
-  useRouteMatch,
-} from "react-router-dom";
+import { Route, Switch, useHistory, useRouteMatch } from "react-router-dom";
 import Loading from "../../common/Loading/Loading";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
@@ -16,8 +10,7 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import "./styles.scss";
 import Swal from "sweetalert2";
-import Comparison from "./Comparison";
-import Forecast from "./Forecast";
+import UnderConstruction from "../../common/UnderConstruction/UnderConstruction";
 
 const drawerWidth = 240;
 
@@ -61,6 +54,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const history = useHistory();
   const role = sessionStorage.getItem("role");
+  const [editLayout, setEditLayout] = useState(false);
 
   const handleDrawerToggle = () => {
     setOpen(!open);
@@ -75,10 +69,6 @@ const Dashboard = () => {
       type: darkMode ? "dark" : "light",
     },
   });
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
 
   useEffect(() => {
     setLoading(true);
@@ -115,15 +105,13 @@ const Dashboard = () => {
           <ThemeProvider theme={theme}>
             <div className={classes.root}>
               <CssBaseline />
-              <Header
-                handleDrawerToggle={handleDrawerToggle}
-                toggleDarkMode={toggleDarkMode}
-                darkMode={darkMode}
-              />
+              <Header handleDrawerToggle={handleDrawerToggle} />
               <Sidebar
                 handleDrawerClose={handleDrawerClose}
                 open={open}
                 tab={tab}
+                editLayout={editLayout}
+                setEditLayout={setEditLayout}
               />
               <main
                 className={clsx(classes.content, {
@@ -132,15 +120,14 @@ const Dashboard = () => {
               >
                 <div className={classes.drawerHeader} />
                 <Switch>
-                  <Route
-                    path={`/dashboard/overview`}
-                    component={Overview}
-                  ></Route>
+                  <Route path={`/dashboard/overview`}>
+                    <Overview editLayout={editLayout} />
+                  </Route>
                   <Route path={`/dashboard/comparison`}>
-                    <Comparison />
+                    <UnderConstruction feature="Comparison" />
                   </Route>
                   <Route path={`/dashboard/forecast`}>
-                    <Forecast />
+                    <UnderConstruction feature="Forecast" />
                   </Route>
                 </Switch>
               </main>

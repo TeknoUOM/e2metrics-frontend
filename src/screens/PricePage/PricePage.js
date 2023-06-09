@@ -9,6 +9,7 @@ import axios from "axios";
 import "./PricePage.scss";
 import Loading from "../../common/Loading/Loading";
 import Swal from "sweetalert2";
+import { Button } from "@material-ui/core";
 
 const PricePage = () => {
   const { getBasicUserInfo, state, signIn } = useAuthContext();
@@ -83,33 +84,33 @@ const PricePage = () => {
                           {state.isAuthenticated ? (
                             role == roles.FREE ? (
                               <>
-                                <button
+                                <Button
                                   className="button gradient-button"
                                   style={{ backgroundColor: "#3CE794" }}
                                   disabled={true}
                                 >
                                   Subscribed
-                                </button>
+                                </Button>
                               </>
                             ) : (
                               <>
-                                <button
+                                <Button
                                   className="button gradient-button"
                                   style={{ backgroundColor: "#3CE794" }}
                                   onClick={setRoleToFree}
                                 >
                                   Change Plan
-                                </button>
+                                </Button>
                               </>
                             )
                           ) : (
-                            <button
+                            <Button
                               className="button gradient-button"
                               style={{ backgroundColor: "#3CE794" }}
                               onClick={() => history.push("/LogFirst")}
                             >
                               Start With Free
-                            </button>
+                            </Button>
                           )}
                         </ul>
                       </div>
@@ -135,15 +136,15 @@ const PricePage = () => {
 
                           {state.isAuthenticated ? (
                             role == roles.BASIC ? (
-                              <button
+                              <Button
                                 className="button gradient-button"
                                 style={{ backgroundColor: "#3CE794" }}
                                 disabled={true}
                               >
                                 Subscribed
-                              </button>
+                              </Button>
                             ) : (
-                              <button
+                              <Button
                                 className="button gradient-button"
                                 style={{ backgroundColor: "#3CE794" }}
                                 onClick={() => {
@@ -153,10 +154,10 @@ const PricePage = () => {
                                 }}
                               >
                                 Change Plan
-                              </button>
+                              </Button>
                             )
                           ) : (
-                            <button
+                            <Button
                               className="button gradient-button"
                               style={{ backgroundColor: "#3CE794" }}
                               onClick={() => {
@@ -164,7 +165,7 @@ const PricePage = () => {
                               }}
                             >
                               Start With Basic
-                            </button>
+                            </Button>
                           )}
                         </ul>
                       </div>
@@ -191,15 +192,15 @@ const PricePage = () => {
                           <li className="my-6">Metrics forecast</li>
                           {state.isAuthenticated ? (
                             role == roles.PREMIUM ? (
-                              <button
+                              <Button
                                 className="button gradient-button"
                                 style={{ backgroundColor: "#3CE794" }}
                                 disabled={true}
                               >
                                 Subscribed
-                              </button>
+                              </Button>
                             ) : (
-                              <button
+                              <Button
                                 className="button gradient-button"
                                 style={{ backgroundColor: "#3CE794" }}
                                 onClick={() => {
@@ -209,16 +210,16 @@ const PricePage = () => {
                                 }}
                               >
                                 Change Plan
-                              </button>
+                              </Button>
                             )
                           ) : (
-                            <button
+                            <Button
                               className="button gradient-button"
                               style={{ backgroundColor: "#3CE794" }}
                               onClick={() => history.push("/LogFirst")}
                             >
                               Start With Premium
-                            </button>
+                            </Button>
                           )}
                         </ul>
                       </div>
