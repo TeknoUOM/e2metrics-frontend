@@ -2,11 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "react-phone-number-input/style.css";
 import Swal from "sweetalert2";
-import PhoneInput from "react-phone-number-input";
-import Sidebar from "../../Sidebar";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import ReactPhoneInput from "react-phone-input-material-ui";
-import { TextField, withStyles } from "@material-ui/core";
 import axios from "axios";
 import ImageUpload from "./changePic";
 import Loading from "../../../../common/Loading/Loading";
@@ -88,6 +83,7 @@ function MyDetails() {
     }
 
     // Confirmation alert
+    setLoading(true);
     axios
       .post(
         `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/changeUserDetails`,
@@ -100,12 +96,7 @@ function MyDetails() {
         }
       )
       .then((res) => {
-        console.log(res.data);
-        Swal.fire({
-          icon: "success",
-          title: "Done",
-          text: "Details Successfully Changed!",
-        });
+        setLoading(false);
       })
       .catch((err) => {
         Swal.fire({
@@ -113,6 +104,7 @@ function MyDetails() {
           title: "Oops...",
           text: "Something went wrong!",
         });
+        setLoading(false);
       });
 
     setIsEditable(false);
@@ -136,7 +128,7 @@ function MyDetails() {
                 className="mydetails-container"
                 onSubmit={isEditable ? handleSubmit : undefined}
               >
-                <div class="field">
+                <div class="">
                   <div className="row column-justify">
                     <div class="column is-one-third is-paddingless is-grouped ">
                       <label for="Fname">First Name:</label>
@@ -179,48 +171,44 @@ function MyDetails() {
                   </div>
                 </div>
 
-                <div className="field">
-                  <div className="columns">
-                    <div className="column is-half">
-                      <div className="control ">
-                        <label for="Mobile">Mobile Number:</label>
-                        <input
-                          className="input is-primary"
-                          type="text"
-                          value={mobile}
-                          readOnly={!isEditable}
-                          onChange={(e) => setMobile(e.target.value)}
-                        ></input>
-                      </div>
+                <div className="columns">
+                  <div className="column is-half">
+                    <div className="control ">
+                      <label for="Mobile">Mobile Number:</label>
+                      <input
+                        className="input is-primary"
+                        type="text"
+                        value={mobile}
+                        readOnly={!isEditable}
+                        onChange={(e) => setMobile(e.target.value)}
+                      ></input>
                     </div>
                   </div>
                 </div>
 
                 <div className="columns">
                   <div className="column is-half">
-                    <div className="field">
-                      <div className="control has-icons-left has-icons-right">
-                        <label htmlFor="email">Email:</label>
-                        <input
-                          className="input is-primary"
-                          type="email"
-                          name="email"
-                          placeholder="Email"
-                          value={email}
-                          onChange={(e) => {
-                            setEmail(e.target.value);
-                            setEmailError("");
-                          }}
-                          readOnly={!isEditable}
-                        />
-                        {emailError && (
-                          <p className="help is-danger">{emailError}</p>
-                        )}
-                      </div>
+                    <div className="control has-icons-left has-icons-right">
+                      <label htmlFor="email">Email:</label>
+                      <input
+                        className="input is-primary"
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                          setEmailError("");
+                        }}
+                        readOnly={!isEditable}
+                      />
+                      {emailError && (
+                        <p className="help is-danger">{emailError}</p>
+                      )}
                     </div>
                   </div>
                 </div>
-                <div className="field is-grouped buttons">
+                <div className="is-grouped">
                   <p className="control">
                     {!isEditable && (
                       <button
@@ -238,6 +226,7 @@ function MyDetails() {
                         <button
                           type="submit"
                           class="button is-primary is-outlined"
+                          style={{ marginRight: "5px" }}
                         >
                           Submit
                         </button>
