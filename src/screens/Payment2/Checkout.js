@@ -1,4 +1,9 @@
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import { TextField } from "@material-ui/core";
+import { InputAdornment } from "@mui/material";
+import PersonIcon from "@mui/icons-material/Person";
+import EmailIcon from "@mui/icons-material/Email";
 
 const Checkout = () => {
   const stripe = useStripe();
@@ -35,39 +40,32 @@ const Checkout = () => {
 
   return (
     <form className="p-6 " onSubmit={handleSubmit}>
-      <div className="control has-icons-left has-icons-right">
-        <CardElement />
-      </div>
+      <CardElement />
 
-      <div class="control has-icons-left has-icons-right">
-        <input
-          class="input is-success"
-          type="text"
-          placeholder="Cardholder Name"
-          value=""
-        />
-        <span class="icon is-small is-left">
-          <i class="fas fa-user"></i>
-        </span>
-        <span class="icon is-small is-right">
-          <i class="fas fa-check"></i>
-        </span>
-      </div>
-      {/*<p class="help is-success">This username is available</p>*/}
-      <div class="control has-icons-left has-icons-right">
-        <input
-          class="input is-danger"
-          type="email"
-          placeholder="Email"
-          value=""
-        />
-        <span class="icon is-small is-left">
-          <i class="fas fa-envelope"></i>
-        </span>
-        <span class="icon is-small is-right">
-          <i class="fas fa-exclamation-triangle"></i>
-        </span>
-      </div>
+      <TextField
+        type="text"
+        placeholder="Full Name"
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <PersonIcon />
+            </InputAdornment>
+          ),
+          disableUnderline: true,
+        }}
+      />
+      <TextField
+        type="email"
+        placeholder="Email"
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <EmailIcon />
+            </InputAdornment>
+          ),
+          disableUnderline: true,
+        }}
+      />
       <button
         className="button gradient-button"
         disabled={!stripe}

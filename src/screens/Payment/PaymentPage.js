@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "bulma-switch/dist/css/bulma-switch.min.css";
-import "./PaymentPage.css";
+import "./PaymentPage.scss";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Payment from "./Payment";
 import { useHistory, useParams } from "react-router-dom";
@@ -9,22 +9,11 @@ import { subscriptionPrice } from "../../common/constant";
 
 const PaymentPage = () => {
   const { plan } = useParams();
-  const [basis, setBasis] = useState("Monthly");
   const [planName, setPlanName] = useState(
     plan.charAt(0).toUpperCase() + plan.slice(1)
   );
   const [subTotal, setSubTotal] = useState(0);
   const [total, setTotal] = useState(0);
-
-  const handleChange = (e) => {
-    if (e.target.checked) {
-      setSubTotal((sub) => sub * 12);
-      setBasis("Yearly");
-    } else {
-      setSubTotal((sub) => sub / 12);
-      setBasis("Monthly");
-    }
-  };
 
   useEffect(() => {
     setSubTotal(subscriptionPrice[plan]);
@@ -51,18 +40,6 @@ const PaymentPage = () => {
                         ${subscriptionPrice[plan]}/mo
                       </p>
                     </div>
-                    <div className="field">
-                      <input
-                        id="switchRoundedOutlinedDefault"
-                        type="checkbox"
-                        name="switchRoundedOutlinedDefault"
-                        className="switch is-rounded is-outlined is-success"
-                        onChange={handleChange}
-                      />
-                      <label htmlFor="switchRoundedOutlinedDefault">
-                        Pay Annually
-                      </label>
-                    </div>
                     <hr />
                     <div className="is-flex is-justify-content-space-between">
                       <p>Sub total</p>
@@ -78,7 +55,7 @@ const PaymentPage = () => {
               </div>
             </div>
             <div className="column payment-card">
-              <Payment plan={planName} amount={total} basis={basis} />
+              <Payment plan={planName} amount={total} />
             </div>
           </div>
         </div>

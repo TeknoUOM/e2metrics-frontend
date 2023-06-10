@@ -1,20 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { roles } from "../../common/constant";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
+import Loading from "../../common/Loading/Loading";
 
-const Checkout = ({ plan, amount, basis }) => {
+const Checkout = ({ plan, amount }) => {
   const [{ options, isPending }] = usePayPalScriptReducer();
   const history = useHistory();
   const userId = sessionStorage.getItem("userId");
+
+  useEffect(() => {
+    !isPending && console.log(document.getElementById("text"));
+  }, [isPending]);
 
   const onCreateOrder = (data, actions) => {
     return actions.order.create({
       purchase_units: [
         {
-          description: plan + " " + basis + " subscription",
+          description: `${plan} subscription`,
           amount: {
             value: amount,
           },
@@ -48,7 +53,6 @@ const Checkout = ({ plan, amount, basis }) => {
                   currency_code: details.purchase_units[0].amount.currency_code,
                 },
                 subscription: plan,
-                basis: basis,
               })
               .then((res) => {
                 Swal.fire({
@@ -56,7 +60,7 @@ const Checkout = ({ plan, amount, basis }) => {
                   title: "Done",
                   text: "Payment Successfully Done!",
                 });
-                history.push("/dashboard");
+                history.push("/dashboard/overview");
               })
               .catch((e) => {
                 Swal.fire({
@@ -86,7 +90,7 @@ const Checkout = ({ plan, amount, basis }) => {
   return (
     <div className="checkout">
       {isPending ? (
-        <p>LOADING...</p>
+        <Loading />
       ) : (
         <>
           <PayPalButtons

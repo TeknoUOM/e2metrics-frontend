@@ -63,7 +63,7 @@ export default function Widget({ id, onRemoveItem, value = 0, loading }) {
       <div className={classes.body}>
         <StatBox
           subtitle={widgetNames[id]}
-          title={value}
+          title={10}
           icon={<ShowChartIcon />}
           loading={loading}
         />

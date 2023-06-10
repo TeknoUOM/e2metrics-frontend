@@ -39,9 +39,9 @@ const initialLayouts = {
     { i: "j", x: 6, y: 3, w: 2, h: 3, isResizable: false },
     { i: "k", x: 8, y: 3, w: 2, h: 3, isResizable: false },
     { i: "l", x: 10, y: 3, w: 2, h: 3, isResizable: false },
-    { i: "m", x: 0, y: 6, w: 4, h: 5, isResizable: false },
-    { i: "n", x: 4, y: 6, w: 4, h: 5, isResizable: false },
-    { i: "o", x: 8, y: 6, w: 4, h: 5, isResizable: false },
+    // { i: "m", x: 0, y: 6, w: 4, h: 5, isResizable: false },
+    // { i: "n", x: 4, y: 6, w: 4, h: 5, isResizable: false },
+    // { i: "o", x: 8, y: 6, w: 4, h: 5, isResizable: false },
   ],
 };
 function Content({ size: { width }, editLayout }) {
@@ -117,6 +117,18 @@ function Content({ size: { width }, editLayout }) {
             />
           </div>
         ))}
+        <div
+          className="widget"
+          data-grid={{ i: "m", x: 0, y: 6, w: 4, h: 5, isResizable: false }}
+        ></div>
+        <div
+          className="widget"
+          data-grid={{ i: "n", x: 4, y: 6, w: 4, h: 5, isResizable: false }}
+        ></div>
+        <div
+          className="widget"
+          data-grid={{ i: "o", x: 8, y: 6, w: 4, h: 5, isResizable: false }}
+        ></div>
       </ResponsiveGridLayout>
     </>
   );

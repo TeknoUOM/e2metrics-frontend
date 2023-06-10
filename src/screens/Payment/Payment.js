@@ -9,13 +9,12 @@ const initialOptions = {
   intent: "capture",
 };
 
-const Payment = ({ plan, amount, basis }) => {
+const Payment = ({ plan, amount }) => {
   return (
     <>
       <PayPalScriptProvider options={initialOptions}>
-        <Checkout plan={plan} amount={amount} basis={basis} />
+        <Checkout plan={plan} amount={amount} />
       </PayPalScriptProvider>
-      x
     </>
   );
 };

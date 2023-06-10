@@ -13,6 +13,7 @@ import Dashboard from "./screens/Dashboard/Dashboard";
 import LogFirst from "./common/LogFirst/LogFirst";
 import "./App.css";
 import UnderConstruction from "./common/UnderConstruction/UnderConstruction";
+import NotFound from "./common/NotFound/NotFound";
 
 function App() {
   const { state } = useAuthContext();
@@ -24,7 +25,6 @@ function App() {
           <Route exact path="/feature" component={FeaturePage}></Route>
           <Route exact path="/price" component={PricePage}></Route>
           <Route exact path="/LogFirst" component={LogFirst}></Route>
-          <Route exact path="/payment2/:plan" component={PaymentPage2}></Route>
           {state.isAuthenticated ? (
             <>
               <Route exact path="/payment/:plan" component={Payment}></Route>
