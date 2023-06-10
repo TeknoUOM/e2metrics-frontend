@@ -25,13 +25,18 @@ const PickRepositories = () => {
   const handleClickAdd = () => {
     setLoading(true);
     axios
-      .post("http://localhost:8080/user/addRepo", {
+      .post(`${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/addRepo`, {
         userId: userId,
         ghUser: user,
         repo: repo,
+        headers: {
+          "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+          accept: "application/json",
+          "Content-Type": "application/json",
+        },
       })
       .then((res) => {
-        history.push("/dashboard");
+        history.push("/dashboard/overview");
       })
       .catch((err) => {
         console.log(err);
@@ -47,7 +52,15 @@ const PickRepositories = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:8080/user/getUserAllRepos?userId=${userId}`)
+      .get(
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserAllRepos?userId=${userId}`,
+        {
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+          },
+        }
+      )
       .then((res) => {
         setExistingRepos(res.data);
       })

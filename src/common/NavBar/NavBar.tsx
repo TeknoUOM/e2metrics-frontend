@@ -39,7 +39,7 @@ function NavBar() {
                 </Link>
               )}
 
-              <Link className="navbar-item ml-4" to="#">
+              <Link className="navbar-item ml-4" to="/about">
                 About
               </Link>
               <Link className="navbar-item ml-4" to="/feature">
@@ -59,7 +59,8 @@ function NavBar() {
                     onClick={() => {
                       sessionStorage.removeItem("role");
                       sessionStorage.removeItem("userId");
-                      signOut()}}
+                      signOut();
+                    }}
                   >
                     Sign Out
                   </button>

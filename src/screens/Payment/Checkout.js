@@ -36,24 +36,28 @@ const Checkout = ({ plan, amount }) => {
         //change user group on asgardeo
         axios
           .put(
-            `http://localhost:8080/user/changeUserGroup?userId=${userId}&groupName=${plan}`
+            `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/changeUserGroup?userId=${userId}&groupName=${plan}`
           )
           .then((res) => {
             //save payment
             axios
-              .post(`http://localhost:8080/payment/savePayment`, {
-                timestamp: details.create_time.substring(
-                  0,
-                  details.create_time.length - 1
-                ),
-                id: details.id,
-                userId: userId,
-                amount: {
-                  value: parseFloat(details.purchase_units[0].amount.value),
-                  currency_code: details.purchase_units[0].amount.currency_code,
-                },
-                subscription: plan,
-              })
+              .post(
+                `${process.env.REACT_APP_BACKEND_CHOREO_URL}/payment/savePayment`,
+                {
+                  timestamp: details.create_time.substring(
+                    0,
+                    details.create_time.length - 1
+                  ),
+                  id: details.id,
+                  userId: userId,
+                  amount: {
+                    value: parseFloat(details.purchase_units[0].amount.value),
+                    currency_code:
+                      details.purchase_units[0].amount.currency_code,
+                  },
+                  subscription: plan,
+                }
+              )
               .then((res) => {
                 Swal.fire({
                   icon: "success",

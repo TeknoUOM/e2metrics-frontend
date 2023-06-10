@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Footer from "../../common/Footer/Footer";
 import NavBar from "../../common/NavBar/NavBar";
-import { Link } from "react-router-dom";
 import { useAuthContext } from "@asgardeo/auth-react";
 import { roles } from "../../common/constant";
 import { useHistory } from "react-router-dom";
@@ -12,7 +11,7 @@ import Swal from "sweetalert2";
 import { Button } from "@material-ui/core";
 
 const PricePage = () => {
-  const { getBasicUserInfo, state, signIn } = useAuthContext();
+  const { state } = useAuthContext();
   const [loading, setLoading] = useState(false);
   const role = sessionStorage.getItem("role");
   const userId = sessionStorage.getItem("userId");
@@ -22,7 +21,7 @@ const PricePage = () => {
     setLoading(true);
     axios
       .put(
-        `http://localhost:8080/user/changeUserGroup?userId=${userId}&groupName=${roles.FREE}`
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/changeUserGroup?userId=${userId}&groupName=${roles.FREE}`
       )
       .then((res) => {
         console.log(res);

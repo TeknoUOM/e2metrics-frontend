@@ -100,7 +100,7 @@ export default function ({
         </List>
         <Divider />
         <List>
-          <Link to={"/settings"}>
+          <Link to={"/settings/mydetails"}>
             <ListItem button>
               <ListItemIcon>
                 <SettingsIcon />

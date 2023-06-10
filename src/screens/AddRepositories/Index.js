@@ -13,12 +13,20 @@ const AddRepositories = () => {
   const history = useHistory();
   const onSuccess = (res) => {
     axios
-      .post("http://localhost:8080/user/authorizeToGithub", {
-        code: res.code,
-        userId: userId,
-      })
+      .post(
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/authorizeToGithub`,
+        {
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+          },
+          code: res.code,
+          userId: userId,
+        }
+      )
       .then((response) => {
-        sessionStorage.setItem("ghToken", response.data.res.access_token);
+        console.log(response);
+        sessionStorage.setItem("ghToken", response.data.res.res.access_token);
         history.push("/addRepositories/repos/");
       })
       .catch((error) => {
@@ -43,7 +51,15 @@ const AddRepositories = () => {
   const connectToGithub = () => {
     setLoading(true);
     axios
-      .get(`http://localhost:8080/user/getUserGithubToken?userId=${userId}`)
+      .get(
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserGithubToken?userId=${userId}`,
+        {
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+          },
+        }
+      )
       .then((res) => {
         if (res.data.ghToken) {
           sessionStorage.setItem("ghToken", res.data.ghToken);

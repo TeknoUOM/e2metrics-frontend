@@ -133,7 +133,7 @@ export default function Header({ handleDrawerToggle }) {
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
-          <MenuItem onClick={() => history.push("/settings")}>
+          <MenuItem onClick={() => history.push("/settings/mydetails")}>
             <ListItemIcon>
               <Settings fontSize="small" />
             </ListItemIcon>
