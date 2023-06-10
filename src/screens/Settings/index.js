@@ -7,7 +7,6 @@ import Notifications from "./Pages/Notifications";
 import Reports from "./Pages/Reports";
 import Plan from "./Pages/Plan";
 import Billing from "./Pages/Billing";
-import Help from "./Pages/Help";
 import { Switch, Route } from "react-router-dom";
 
 function Settings() {
@@ -19,7 +18,6 @@ function Settings() {
           <Route path="/settings/reports" component={Reports} />
           <Route path="/settings/plan" component={Plan} />
           <Route path="/settings/billing" component={Billing} />
-          <Route path="/settings/help" component={Help} />
           <Route path="/settings/mydetails" component={MyDetails} />
         </Switch>
       </Sidebar>

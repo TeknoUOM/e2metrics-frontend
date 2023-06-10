@@ -73,6 +73,7 @@ const Reports = () => {
         <Loading />
       ) : (
         <div>
+          <p className="is-size-2">Report</p>
           <div className="field">
             <input
               id="switchRoundedOutlinedDefault"
@@ -88,7 +89,10 @@ const Reports = () => {
           </div>
           {changed ? (
             <div className="buttons">
-              <button class="button is-success" onClick={handleSave}>
+              <button
+                class="button is-primary is-outlined"
+                onClick={handleSave}
+              >
                 Save
               </button>
             </div>

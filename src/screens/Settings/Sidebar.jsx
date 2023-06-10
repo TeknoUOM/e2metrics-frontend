@@ -5,9 +5,10 @@ import {
   FaUserAlt,
   FaTasks,
   FaCreditCard,
+  FaArrowLeft,
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-import logo from "./../../images/logo.png"
+import logo from "./../../images/logo.png";
 import "./settings.css";
 
 const Sidebar = ({ children }) => {
@@ -38,9 +39,9 @@ const Sidebar = ({ children }) => {
       icon: <FaCreditCard />,
     },
     {
-      path: "/settings/help",
-      name: "Help",
-      icon: <FaQuestionCircle />,
+      path: "/dashboard/overview",
+      name: "Back",
+      icon: <FaArrowLeft />,
     },
   ];
   return (
