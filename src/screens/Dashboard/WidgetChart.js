@@ -53,9 +53,6 @@ export default function Widget({
       flexGrow: 1,
     },
   });
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   const classes = useStyles();
 

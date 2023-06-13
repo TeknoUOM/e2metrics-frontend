@@ -25,7 +25,7 @@ const options = [
   "Hide all notification content",
 ];
 
-export default function SelectRepo({ repos, setSelectedRepo, selectedRepo }) {
+export default function SelectRepo({ repos = [], setReponame, setOwnername }) {
   const classes = useStyles();
   const history = useHistory();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -34,27 +34,29 @@ export default function SelectRepo({ repos, setSelectedRepo, selectedRepo }) {
   const open = Boolean(anchorEl);
 
   const removeRepo = () => {
-    axios
-      .delete(`${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/removeRepo`, {
-        userId: "",
-        ghUser: "",
-        repo: "",
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    repos &&
+      axios
+        .delete(`${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/removeRepo`, {
+          userId: userId,
+          ghUser: repos[selectedIndex].ownername,
+          repo: repos[selectedIndex].reponame,
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
   };
 
   const handleClickListItem = (event) => {
     setAnchorEl(event.currentTarget);
-    setSelectedRepo(repos[selectedIndex]);
   };
 
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
+    setReponame(repos[index].reponame);
+    setOwnername(repos[index].ownername);
     setAnchorEl(null);
   };
 
@@ -79,7 +81,7 @@ export default function SelectRepo({ repos, setSelectedRepo, selectedRepo }) {
           >
             <ListItemText
               primary="Repository"
-              secondary={repos[selectedIndex]}
+              secondary={repos.length > 0 && repos[selectedIndex].reponame}
             />
           </ListItem>
         </List>
@@ -99,7 +101,7 @@ export default function SelectRepo({ repos, setSelectedRepo, selectedRepo }) {
               selected={index === selectedIndex}
               onClick={(event) => handleMenuItemClick(event, index)}
             >
-              {repo}
+              {`${repo.ownername}/${repo.reponame}`}
             </MenuItem>
           ))}
         </Menu>
@@ -109,7 +111,7 @@ export default function SelectRepo({ repos, setSelectedRepo, selectedRepo }) {
           className="button is-danger is-outlined remove-button"
           onClick={removeRepo}
         >
-          remove
+          Remove
         </button>
         <button
           className="button is-primary is-outlined add-button"

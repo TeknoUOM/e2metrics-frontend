@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
-import Loading from "../../common/Loading/Loading";
 import { MoonLoader } from "react-spinners";
 
 // import ProgressCircle from "./ProgressCircle";
@@ -15,7 +14,7 @@ const StatBox = ({ value, subtitle, loading }) => {
               <Typography sx={{ fontSize: 18 }}>{subtitle}</Typography>
             </Box>
             {loading ? (
-              <MoonLoader color={"#3CE794"} size={25} speedMultiplier={1} />
+              <MoonLoader size={25} speedMultiplier={1} />
             ) : (
               <Typography
                 variant="h4"

@@ -79,17 +79,90 @@ const initialLayouts = {
       w: 2,
       h: 2,
       isResizable: false,
+      isDraggable: false,
       color: "#BAEDBD",
     },
-    { i: "IssuesFixingFrequency", x: 2, y: 0, w: 2, h: 2, isResizable: false },
-    { i: "BugFixRatio", x: 4, y: 0, w: 2, h: 2, isResizable: false },
-    { i: "CommitCount", x: 6, y: 0, w: 2, h: 2, isResizable: false },
-    { i: "MeanLeadFixTime", x: 8, y: 0, w: 2, h: 2, isResizable: false },
-    { i: "PullRequestFrequency", x: 10, y: 0, w: 2, h: 2, isResizable: false },
-    { i: "WeeklyCommitCount", x: 0, y: 2, w: 2, h: 2, isResizable: false },
-    { i: "OpenedIssuesCount", x: 2, y: 2, w: 2, h: 2, isResizable: false },
-    { i: "AllIssuesCount", x: 4, y: 2, w: 2, h: 2, isResizable: false },
-    { i: "WontFixIssuesRatio", x: 6, y: 2, w: 2, h: 2, isResizable: false },
+    {
+      i: "IssuesFixingFrequency",
+      x: 2,
+      y: 0,
+      w: 2,
+      h: 2,
+      isResizable: false,
+      isDraggable: false,
+    },
+    {
+      i: "BugFixRatio",
+      x: 4,
+      y: 0,
+      w: 2,
+      h: 2,
+      isResizable: false,
+      isDraggable: false,
+    },
+    {
+      i: "CommitCount",
+      x: 6,
+      y: 0,
+      w: 2,
+      h: 2,
+      isResizable: false,
+      isDraggable: false,
+    },
+    {
+      i: "MeanLeadFixTime",
+      x: 8,
+      y: 0,
+      w: 2,
+      h: 2,
+      isResizable: false,
+      isDraggable: false,
+    },
+    {
+      i: "PullRequestFrequency",
+      x: 10,
+      y: 0,
+      w: 2,
+      h: 2,
+      isResizable: false,
+      isDraggable: false,
+    },
+    {
+      i: "WeeklyCommitCount",
+      x: 0,
+      y: 2,
+      w: 2,
+      h: 2,
+      isResizable: false,
+      isDraggable: false,
+    },
+    {
+      i: "OpenedIssuesCount",
+      x: 2,
+      y: 2,
+      w: 2,
+      h: 2,
+      isResizable: false,
+      isDraggable: false,
+    },
+    {
+      i: "AllIssuesCount",
+      x: 4,
+      y: 2,
+      w: 2,
+      h: 2,
+      isResizable: false,
+      isDraggable: false,
+    },
+    {
+      i: "WontFixIssuesRatio",
+      x: 6,
+      y: 2,
+      w: 2,
+      h: 2,
+      isResizable: false,
+      isDraggable: false,
+    },
     {
       i: "MeanPullRequestResponseTime",
       x: 8,
@@ -97,10 +170,35 @@ const initialLayouts = {
       w: 2,
       h: 2,
       isResizable: false,
+      isDraggable: false,
     },
-    { i: "PullRequestCount", x: 10, y: 2, w: 2, h: 2, isResizable: false },
-    { i: "MeanLeadTimeForPulls", x: 0, y: 4, w: 2, h: 2, isResizable: false },
-    { i: "ResponseTimeforIssue", x: 2, y: 4, w: 2, h: 2, isResizable: false },
+    {
+      i: "PullRequestCount",
+      x: 10,
+      y: 2,
+      w: 2,
+      h: 2,
+      isResizable: false,
+      isDraggable: false,
+    },
+    {
+      i: "MeanLeadTimeForPulls",
+      x: 0,
+      y: 4,
+      w: 2,
+      h: 2,
+      isResizable: false,
+      isDraggable: false,
+    },
+    {
+      i: "ResponseTimeforIssue",
+      x: 2,
+      y: 4,
+      w: 2,
+      h: 2,
+      isResizable: false,
+      isDraggable: false,
+    },
     {
       i: "totalNumberOfLinesChart",
       x: 4,
@@ -109,6 +207,7 @@ const initialLayouts = {
       h: 5,
       isResizable: false,
       color: "#BAEDBD",
+      isDraggable: false,
     },
     {
       i: "IssuesFixingFrequencyChart",
@@ -117,10 +216,35 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
+      isDraggable: false,
     },
-    { i: "BugFixRatioChart", x: 0, y: 6, w: 4, h: 5, isResizable: false },
-    { i: "CommitCountChart", x: 4, y: 6, w: 4, h: 5, isResizable: false },
-    { i: "MeanLeadFixTimeChart", x: 8, y: 6, w: 4, h: 5, isResizable: false },
+    {
+      i: "BugFixRatioChart",
+      x: 0,
+      y: 6,
+      w: 4,
+      h: 5,
+      isResizable: false,
+      isDraggable: false,
+    },
+    {
+      i: "CommitCountChart",
+      x: 4,
+      y: 6,
+      w: 4,
+      h: 5,
+      isResizable: false,
+      isDraggable: false,
+    },
+    {
+      i: "MeanLeadFixTimeChart",
+      x: 8,
+      y: 6,
+      w: 4,
+      h: 5,
+      isResizable: false,
+      isDraggable: false,
+    },
     {
       i: "PullRequestFrequencyChart",
       x: 0,
@@ -128,6 +252,7 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
+      isDraggable: false,
     },
     {
       i: "WeeklyCommitCountChart",
@@ -136,6 +261,7 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
+      isDraggable: false,
     },
     {
       i: "OpenedIssuesCountChart",
@@ -144,8 +270,17 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
+      isDraggable: false,
     },
-    { i: "AllIssuesCountChart", x: 0, y: 12, w: 4, h: 5, isResizable: false },
+    {
+      i: "AllIssuesCountChart",
+      x: 0,
+      y: 12,
+      w: 4,
+      h: 5,
+      isResizable: false,
+      isDraggable: false,
+    },
     {
       i: "WontFixIssuesRatioChart",
       x: 4,
@@ -153,6 +288,7 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
+      isDraggable: false,
     },
     {
       i: "MeanPullRequestResponseTimeChart",
@@ -161,8 +297,17 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
+      isDraggable: false,
     },
-    { i: "PullRequestCountChart", x: 0, y: 15, w: 4, h: 5, isResizable: false },
+    {
+      i: "PullRequestCountChart",
+      x: 0,
+      y: 15,
+      w: 4,
+      h: 5,
+      isResizable: false,
+      isDraggable: false,
+    },
     {
       i: "MeanLeadTimeForPullsChart",
       x: 4,
@@ -170,6 +315,7 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
+      isDraggable: false,
     },
     {
       i: "ResponseTimeforIssueChart",
@@ -178,13 +324,15 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
+      isDraggable: false,
     },
   ],
 };
 function Content({ size: { width }, editLayout }) {
   const [cardData, setCardData] = useState(null);
+  const [reponame, setReponame] = useState(null);
+  const [ownername, setOwnername] = useState(null);
   const [chartData, setChartData] = useState([]);
-  const [selectedRepo, setSelectedRepo] = useState(null);
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState(originalItems);
@@ -208,32 +356,50 @@ function Content({ size: { width }, editLayout }) {
 
   useEffect(() => {
     setLoading(true);
-    axios
-      .get(
-        `${
-          process.env.REACT_APP_BACKEND_CHOREO_URL
-        }/metrics/getRepoLatestDailyPerfomance?userId=${"8927e648-f434-4056-bd8c-892c3f70a83b"}&ownername=${"MasterD98"}&reponame=${"tic-tac-toe"}`
-      )
-      .then((res) => {
-        setCardData(res.data[0]);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      });
-  }, [selectedRepo]);
+    ownername &&
+      reponame &&
+      axios
+        .get(
+          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/metrics/getRepoLatestDailyPerfomance?userId=${userId}&ownername=${ownername}&reponame=${reponame}`
+        )
+        .then((res) => {
+          setCardData(res.data[0]);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+        });
+  }, [reponame, ownername]);
+
+  useEffect(() => {
+    setLoading(true);
+    ownername &&
+      reponame &&
+      axios
+        .get(
+          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/metrics/getRepoLatestWeeklyPerfomance?userId=${userId}&ownername=${ownername}&reponame=${reponame}`
+        )
+        .then((res) => {
+          setChartData(res.data.reverse());
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+        });
+  }, [reponame, ownername]);
 
   useEffect(() => {
     setLoading(true);
     axios
       .get(
-        `${
-          process.env.REACT_APP_BACKEND_CHOREO_URL
-        }/metrics/getRepoLatestWeeklyPerfomance?userId=${"8927e648-f434-4056-bd8c-892c3f70a83b"}&ownername=${"MasterD98"}&reponame=${"tic-tac-toe"}`
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserAllRepos?userId=${userId}`
       )
       .then((res) => {
-        setChartData(res.data);
+        setRepos(res.data);
+        setOwnername(res.data[0].ownername);
+        setReponame(res.data[0].reponame);
         setLoading(false);
       })
       .catch((err) => {
@@ -241,6 +407,24 @@ function Content({ size: { width }, editLayout }) {
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    let lg = [];
+    if (editLayout) {
+      layouts.lg.forEach((element) => {
+        let temp = element;
+        temp.isDraggable = true;
+        lg.push(temp);
+      });
+    } else {
+      layouts.lg.forEach((element) => {
+        let temp = element;
+        temp.isDraggable = false;
+        lg.push(temp);
+      });
+    }
+    setLayouts({ lg: lg });
+  }, [editLayout]);
 
   return (
     <>
@@ -255,8 +439,8 @@ function Content({ size: { width }, editLayout }) {
       ) : (
         <SelectRepo
           repos={repos}
-          setSelectedRepo={setSelectedRepo}
-          selectedRepo={selectedRepo}
+          setOwnername={setOwnername}
+          setReponame={setReponame}
         />
       )}
       <ResponsiveGridLayout
@@ -286,7 +470,7 @@ function Content({ size: { width }, editLayout }) {
                   color={originalItemsColors[key]}
                   data={
                     chartData &&
-                    chartData.reverse().map((day) => {
+                    chartData.map((day) => {
                       return { [day.Date]: day[key.replace("Chart", "")] };
                     })
                   }

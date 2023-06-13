@@ -34,7 +34,7 @@ function NavBar() {
 
             <div className="navbar-end">
               {state.isAuthenticated && (
-                <Link className="navbar-item ml-4" to="/dashboard">
+                <Link className="navbar-item ml-4" to="/dashboard/overview">
                   Dashboard
                 </Link>
               )}
