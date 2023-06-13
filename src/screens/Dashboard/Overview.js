@@ -2,52 +2,193 @@ import React, { useEffect, useState } from "react";
 import { Responsive as ResponsiveGridLayout } from "react-grid-layout";
 import { withSize } from "react-sizeme";
 import TopBar from "./TopBar";
-import Widget from "./Widget";
+import WidgetCard from "./WidgetCard";
+import WidgetChart from "./WidgetChart";
 import SelectRepo from "./SelectRepo";
 import axios from "axios";
 import Loading from "../../common/Loading/Loading";
 
 const originalItems = [
   "totalNumberOfLines",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "o",
+  "IssuesFixingFrequency",
+  "BugFixRatio",
+  "CommitCount",
+  "MeanLeadFixTime",
+  "PullRequestFrequency",
+  "WeeklyCommitCount",
+  "OpenedIssuesCount",
+  "AllIssuesCount",
+  "WontFixIssuesRatio",
+  "MeanPullRequestResponseTime",
+  "PullRequestCount",
+  "MeanLeadTimeForPulls",
+  "ResponseTimeforIssue",
+  "totalNumberOfLinesChart",
+  "IssuesFixingFrequencyChart",
+  "BugFixRatioChart",
+  "CommitCountChart",
+  "MeanLeadFixTimeChart",
+  "PullRequestFrequencyChart",
+  "WeeklyCommitCountChart",
+  "OpenedIssuesCountChart",
+  "AllIssuesCountChart",
+  "WontFixIssuesRatioChart",
+  "MeanPullRequestResponseTimeChart",
+  "PullRequestCountChart",
+  "MeanLeadTimeForPullsChart",
+  "ResponseTimeforIssueChart",
 ];
+
+const originalItemsColors = {
+  totalNumberOfLines: "#BAEDBD",
+  IssuesFixingFrequency: "#A1E3CB",
+  BugFixRatio: "#BAEDBD",
+  CommitCount: "#A1E3CB",
+  MeanLeadFixTime: "#BAEDBD",
+  PullRequestFrequency: "#A1E3CB",
+  WeeklyCommitCount: "#BAEDBD",
+  OpenedIssuesCount: "#A1E3CB",
+  AllIssuesCount: "#BAEDBD",
+  WontFixIssuesRatio: "#A1E3CB",
+  MeanPullRequestResponseTime: "#BAEDBD",
+  PullRequestCount: "#A1E3CB",
+  MeanLeadTimeForPulls: "#BAEDBD",
+  ResponseTimeforIssue: "#A1E3CB",
+  totalNumberOfLinesChart: "#F7F9FB",
+  IssuesFixingFrequencyChart: "#F7F9FB",
+  BugFixRatioChart: "#F7F9FB",
+  CommitCountChart: "#F7F9FB",
+  MeanLeadFixTimeChart: "#F7F9FB",
+  PullRequestFrequencyChart: "#F7F9FB",
+  WeeklyCommitCountChart: "#F7F9FB",
+  OpenedIssuesCountChart: "#F7F9FB",
+  AllIssuesCountChart: "#F7F9FB",
+  WontFixIssuesRatioChart: "#F7F9FB",
+  MeanPullRequestResponseTimeChart: "#F7F9FB",
+  PullRequestCountChart: "#F7F9FB",
+  MeanLeadTimeForPullsChart: "#F7F9FB",
+  ResponseTimeforIssueChart: "#F7F9FB",
+};
 
 const initialLayouts = {
   lg: [
-    { i: "totalNumberOfLines", x: 0, y: 0, w: 2, h: 3, isResizable: false },
-    { i: "b", x: 2, y: 0, w: 2, h: 3, isResizable: false },
-    { i: "c", x: 4, y: 0, w: 2, h: 3, isResizable: false },
-    { i: "d", x: 6, y: 0, w: 2, h: 3, isResizable: false },
-    { i: "e", x: 8, y: 0, w: 2, h: 3, isResizable: false },
-    { i: "f", x: 10, y: 0, w: 2, h: 3, isResizable: false },
-    { i: "g", x: 0, y: 3, w: 2, h: 3, isResizable: false },
-    { i: "h", x: 2, y: 3, w: 2, h: 3, isResizable: false },
-    { i: "i", x: 4, y: 3, w: 2, h: 3, isResizable: false },
-    { i: "j", x: 6, y: 3, w: 2, h: 3, isResizable: false },
-    { i: "k", x: 8, y: 3, w: 2, h: 3, isResizable: false },
-    { i: "l", x: 10, y: 3, w: 2, h: 3, isResizable: false },
-    // { i: "m", x: 0, y: 6, w: 4, h: 5, isResizable: false },
-    // { i: "n", x: 4, y: 6, w: 4, h: 5, isResizable: false },
-    // { i: "o", x: 8, y: 6, w: 4, h: 5, isResizable: false },
+    {
+      i: "totalNumberOfLines",
+      x: 0,
+      y: 0,
+      w: 2,
+      h: 2,
+      isResizable: false,
+      color: "#BAEDBD",
+    },
+    { i: "IssuesFixingFrequency", x: 2, y: 0, w: 2, h: 2, isResizable: false },
+    { i: "BugFixRatio", x: 4, y: 0, w: 2, h: 2, isResizable: false },
+    { i: "CommitCount", x: 6, y: 0, w: 2, h: 2, isResizable: false },
+    { i: "MeanLeadFixTime", x: 8, y: 0, w: 2, h: 2, isResizable: false },
+    { i: "PullRequestFrequency", x: 10, y: 0, w: 2, h: 2, isResizable: false },
+    { i: "WeeklyCommitCount", x: 0, y: 2, w: 2, h: 2, isResizable: false },
+    { i: "OpenedIssuesCount", x: 2, y: 2, w: 2, h: 2, isResizable: false },
+    { i: "AllIssuesCount", x: 4, y: 2, w: 2, h: 2, isResizable: false },
+    { i: "WontFixIssuesRatio", x: 6, y: 2, w: 2, h: 2, isResizable: false },
+    {
+      i: "MeanPullRequestResponseTime",
+      x: 8,
+      y: 2,
+      w: 2,
+      h: 2,
+      isResizable: false,
+    },
+    { i: "PullRequestCount", x: 10, y: 2, w: 2, h: 2, isResizable: false },
+    { i: "MeanLeadTimeForPulls", x: 0, y: 4, w: 2, h: 2, isResizable: false },
+    { i: "ResponseTimeforIssue", x: 2, y: 4, w: 2, h: 2, isResizable: false },
+    {
+      i: "totalNumberOfLinesChart",
+      x: 4,
+      y: 4,
+      w: 4,
+      h: 5,
+      isResizable: false,
+      color: "#BAEDBD",
+    },
+    {
+      i: "IssuesFixingFrequencyChart",
+      x: 8,
+      y: 4,
+      w: 4,
+      h: 5,
+      isResizable: false,
+    },
+    { i: "BugFixRatioChart", x: 0, y: 6, w: 4, h: 5, isResizable: false },
+    { i: "CommitCountChart", x: 4, y: 6, w: 4, h: 5, isResizable: false },
+    { i: "MeanLeadFixTimeChart", x: 8, y: 6, w: 4, h: 5, isResizable: false },
+    {
+      i: "PullRequestFrequencyChart",
+      x: 0,
+      y: 9,
+      w: 4,
+      h: 5,
+      isResizable: false,
+    },
+    {
+      i: "WeeklyCommitCountChart",
+      x: 4,
+      y: 9,
+      w: 4,
+      h: 5,
+      isResizable: false,
+    },
+    {
+      i: "OpenedIssuesCountChart",
+      x: 8,
+      y: 9,
+      w: 4,
+      h: 5,
+      isResizable: false,
+    },
+    { i: "AllIssuesCountChart", x: 0, y: 12, w: 4, h: 5, isResizable: false },
+    {
+      i: "WontFixIssuesRatioChart",
+      x: 4,
+      y: 12,
+      w: 4,
+      h: 5,
+      isResizable: false,
+    },
+    {
+      i: "MeanPullRequestResponseTimeChart",
+      x: 8,
+      y: 12,
+      w: 4,
+      h: 5,
+      isResizable: false,
+    },
+    { i: "PullRequestCountChart", x: 0, y: 15, w: 4, h: 5, isResizable: false },
+    {
+      i: "MeanLeadTimeForPullsChart",
+      x: 4,
+      y: 15,
+      w: 4,
+      h: 5,
+      isResizable: false,
+    },
+    {
+      i: "ResponseTimeforIssueChart",
+      x: 8,
+      y: 15,
+      w: 4,
+      h: 5,
+      isResizable: false,
+    },
   ],
 };
 function Content({ size: { width }, editLayout }) {
-  const [data, setData] = useState(null);
+  const [cardData, setCardData] = useState(null);
+  const [chartData, setChartData] = useState([]);
+  const [selectedRepo, setSelectedRepo] = useState(null);
+  const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState(originalItems);
+  const userId = sessionStorage.getItem("userId");
   const [layouts, setLayouts] = useState(
     getFromLS("layouts") || initialLayouts
   );
@@ -66,15 +207,38 @@ function Content({ size: { width }, editLayout }) {
   };
 
   useEffect(() => {
-    //setLoading(true);
+    setLoading(true);
     axios
-      .get(`http://localhost:8080/getPerfomances?userId=${""}`)
+      .get(
+        `${
+          process.env.REACT_APP_BACKEND_CHOREO_URL
+        }/metrics/getRepoLatestDailyPerfomance?userId=${"8927e648-f434-4056-bd8c-892c3f70a83b"}&ownername=${"MasterD98"}&reponame=${"tic-tac-toe"}`
+      )
       .then((res) => {
-        setData(res.data[0]);
+        setCardData(res.data[0]);
         setLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
+      });
+  }, [selectedRepo]);
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(
+        `${
+          process.env.REACT_APP_BACKEND_CHOREO_URL
+        }/metrics/getRepoLatestWeeklyPerfomance?userId=${"8927e648-f434-4056-bd8c-892c3f70a83b"}&ownername=${"MasterD98"}&reponame=${"tic-tac-toe"}`
+      )
+      .then((res) => {
+        setChartData(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
       });
   }, []);
 
@@ -89,7 +253,11 @@ function Content({ size: { width }, editLayout }) {
           originalItems={originalItems}
         />
       ) : (
-        <SelectRepo />
+        <SelectRepo
+          repos={repos}
+          setSelectedRepo={setSelectedRepo}
+          selectedRepo={selectedRepo}
+        />
       )}
       <ResponsiveGridLayout
         className="layout"
@@ -99,6 +267,7 @@ function Content({ size: { width }, editLayout }) {
         rowHeight={60}
         width={width}
         onLayoutChange={onLayoutChange}
+        style={{ minHeight: "80vh" }}
       >
         {items.map((key) => (
           <div
@@ -108,27 +277,32 @@ function Content({ size: { width }, editLayout }) {
               initialLayouts.lg.filter((element) => element.i == key)[0]
             }
           >
-            <Widget
-              id={key}
-              onRemoveItem={onRemoveItem}
-              backgroundColor="#867ae9"
-              value={data && data[key]}
-              loading={loading}
-            />
+            {key.includes("Chart") ? (
+              <>
+                <WidgetChart
+                  id={key}
+                  onRemoveItem={onRemoveItem}
+                  loading={loading}
+                  color={originalItemsColors[key]}
+                  data={
+                    chartData &&
+                    chartData.reverse().map((day) => {
+                      return { [day.Date]: day[key.replace("Chart", "")] };
+                    })
+                  }
+                />
+              </>
+            ) : (
+              <WidgetCard
+                id={key}
+                onRemoveItem={onRemoveItem}
+                loading={loading}
+                data={cardData}
+                color={originalItemsColors[key]}
+              />
+            )}
           </div>
         ))}
-        <div
-          className="widget"
-          data-grid={{ i: "m", x: 0, y: 6, w: 4, h: 5, isResizable: false }}
-        ></div>
-        <div
-          className="widget"
-          data-grid={{ i: "n", x: 4, y: 6, w: 4, h: 5, isResizable: false }}
-        ></div>
-        <div
-          className="widget"
-          data-grid={{ i: "o", x: 8, y: 6, w: 4, h: 5, isResizable: false }}
-        ></div>
       </ResponsiveGridLayout>
     </>
   );

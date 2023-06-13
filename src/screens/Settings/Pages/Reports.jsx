@@ -14,6 +14,7 @@ const Reports = () => {
     setChecked(!checked);
     setChanged(true);
   };
+  const handleReport = () => {};
 
   const handleSave = () => {
     setLoading(true);
@@ -87,6 +88,17 @@ const Reports = () => {
               Send monthly reports
             </label>
           </div>
+          {checked ? (
+            <div className="buttons">
+              <button
+                class="button is-primary is-outlined"
+                onClick={handleReport}
+              >
+                Open Report
+              </button>
+            </div>
+          ) : null}
+
           {changed ? (
             <div className="buttons">
               <button

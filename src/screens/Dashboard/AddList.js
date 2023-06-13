@@ -16,21 +16,34 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const widgetNames = {
-  totalNumberOfLines: "Lines of Code",
-  b: "Number Of Commits",
-  c: "Pull Requests Count",
-  d: "Opened Isses",
-  e: "Weekly Commit Count",
-  f: "Issue Fixing Frequency",
-  g: "Bug Fix Ratio",
-  h: "Fix Issue Lead Time",
-  i: "Pull Request Frequency",
-  j: "Pull Request Response Time",
-  k: "Total Issues",
-  l: "Weekly Pull Request Count",
-  m: "Won't Fix Issue Ratio",
-  n: "Pull Request Lead Time",
-  o: "Issue Response Time",
+  totalNumberOfLines: "Lines of Code Card",
+  IssuesFixingFrequency: "Issues Fixing Frequency Card",
+  BugFixRatio: "Bug Fix Ratio Card",
+  CommitCount: "Commit Count Card",
+  MeanLeadFixTime: "Mean Lead Fix Time Card",
+  PullRequestFrequency: "Pull Request Frequency Card",
+  WeeklyCommitCount: "Weekly Commit Count Card",
+  OpenedIssuesCount: "Opened Issues Count Card",
+  AllIssuesCount: "All Issues Count Card",
+  WontFixIssuesRatio: "Wont Fix Issues Ratio Card",
+  MeanPullRequestResponseTime: "Mean Pull Request Response Time Card",
+  PullRequestCount: "Pull Request Count Card",
+  MeanLeadTimeForPulls: "Pulls Mean Lead Time Card",
+  ResponseTimeforIssue: "Issue Response Time Card",
+  totalNumberOfLinesChart: "Lines of Code Card",
+  IssuesFixingFrequencyChart: "Issues Fixing Frequency Chart",
+  BugFixRatioChart: "Bug Fix Ratio Chart",
+  CommitCountChart: "Commit Count Chart",
+  MeanLeadFixTimeChart: "Mean Lead Fix Time Chart",
+  PullRequestFrequencyChart: "Pull Request Frequency Chart",
+  WeeklyCommitCountChart: "Weekly Commit Count Chart",
+  OpenedIssuesCountChart: "Opened Issues Count Chart",
+  AllIssuesCountChart: "All Issues Count Chart",
+  WontFixIssuesRatioChart: "Wont Fix Issues Ratio Chart",
+  MeanPullRequestResponseTimeChart: "Mean Pull Request Response Time Chart",
+  PullRequestCountChart: "Pull Request Count Chart",
+  MeanLeadTimeForPullsChart: "Pulls Mean Lead Time Chart",
+  ResponseTimeforIssueChart: "Issue Response Time Chart",
 };
 
 export default function AddList({
@@ -91,6 +104,7 @@ export default function AddList({
                       checked={items.includes(i)}
                       onChange={handleChange}
                       name={i}
+                      style={{ color: "#A1E3CB" }}
                     />
                   }
                   label={widgetNames[i]}

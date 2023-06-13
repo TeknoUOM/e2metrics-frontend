@@ -1,35 +1,34 @@
 import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import Loading from "../../common/Loading/Loading";
+import { MoonLoader } from "react-spinners";
+
 // import ProgressCircle from "./ProgressCircle";
 
-const StatBox = ({ title, subtitle, icon, loading }) => {
+const StatBox = ({ value, subtitle, loading }) => {
   return (
     <>
-      {loading ? (
-        <Loading />
-      ) : (
-        <Box width="100%" m="0 10px">
-          <Box display="flex" justifyContent="space-between">
-            <Box>
-              {icon}
+      <Box width="100%" m="0 10px">
+        <Box display="flex" justifyContent="space-between">
+          <Box>
+            <Box display="flex" justifyContent="space-between" mt="2px">
+              <Typography sx={{ fontSize: 18 }}>{subtitle}</Typography>
+            </Box>
+            {loading ? (
+              <MoonLoader color={"#3CE794"} size={25} speedMultiplier={1} />
+            ) : (
               <Typography
                 variant="h4"
                 fontWeight="bold"
                 sx={{ color: "black" }}
               >
-                {title}
+                {value}
               </Typography>
-            </Box>
-            <Box>{/*<ProgressCircle progress={progress} />*/}</Box>
+            )}
           </Box>
-          <Box display="flex" justifyContent="space-between" mt="2px">
-            <Typography sx={{ color: "green", fontSize: 18 }}>
-              {subtitle}
-            </Typography>
-          </Box>
+          <Box>{/*<ProgressCircle progress={progress} />*/}</Box>
         </Box>
-      )}
+      </Box>
     </>
   );
 };

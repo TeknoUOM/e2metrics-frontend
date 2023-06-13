@@ -50,6 +50,7 @@ const PickRepositories = () => {
   };
 
   useEffect(() => {
+    console.log(sessionStorage.getItem("ghToken"));
     setLoading(true);
     axios
       .get(

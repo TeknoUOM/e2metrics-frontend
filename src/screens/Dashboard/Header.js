@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -12,13 +12,10 @@ import MenuItem from "@mui/material/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
 import { useAuthContext } from "@asgardeo/auth-react";
 import { useHistory } from "react-router-dom";
-import Avatar from "@mui/material/Avatar";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import Divider from "@mui/material/Divider";
-import Tooltip from "@mui/material/Tooltip";
-import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   appbar: {
@@ -39,15 +36,38 @@ const useStyles = makeStyles((theme) => ({
 export default function Header({ handleDrawerToggle }) {
   const classes = useStyles();
   const { signOut } = useAuthContext();
-
+  const [userAlerts, setUserAlerts] = useState([]);
+  const userId = sessionStorage.getItem("userId");
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const [anchorElNotification, setAnchorElNotification] = useState(null);
+  const openNotification = Boolean(anchorElNotification);
   const history = useHistory();
+
+  useEffect(() => {
+    axios
+      .get(
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserAlerts?userId=${userId}`
+      )
+      .then((res) => {
+        setUserAlerts(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const handleNotificationClick = (event) => {
+    setAnchorElNotification(event.currentTarget);
+  };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleNotificationClose = () => {
+    setAnchorElNotification(null);
   };
 
   const handleLogout = () => {
@@ -79,12 +99,36 @@ export default function Header({ handleDrawerToggle }) {
           color="inherit"
           aria-label="open drawer"
           edge="start"
+          aria-controls={openNotification ? "basic-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={openNotification ? "true" : undefined}
           className={classes.rightIcons}
+          onClick={handleNotificationClick}
         >
-          <Badge badgeContent={0} color="secondary">
+          <Badge
+            badgeContent={userAlerts && userAlerts.length | 0}
+            color="secondary"
+          >
             <NotificationsIcon />
           </Badge>
         </IconButton>
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorElNotification}
+          open={openNotification}
+          onClose={handleNotificationClose}
+          onClick={handleNotificationClose}
+          MenuListProps={{
+            "aria-labelledby": "basic-button",
+          }}
+        >
+          {userAlerts.map((alert) => (
+            <MenuItem disabled onClick={handleNotificationClose}>
+              {alert.Alert}
+            </MenuItem>
+          ))}
+        </Menu>
+
         <IconButton
           color="inherit"
           aria-label="open drawer"

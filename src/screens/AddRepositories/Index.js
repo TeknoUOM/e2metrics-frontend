@@ -25,7 +25,6 @@ const AddRepositories = () => {
         }
       )
       .then((response) => {
-        console.log(response);
         sessionStorage.setItem("ghToken", response.data.res.res.access_token);
         history.push("/addRepositories/repos/");
       })
@@ -77,7 +76,7 @@ const AddRepositories = () => {
             })
             .catch((error) => {
               console.log(error);
-              setAuthorized("notAutherize");
+              setAuthorized("notAuthorize");
             });
         } else {
           setAuthorized("notAuthorize");
