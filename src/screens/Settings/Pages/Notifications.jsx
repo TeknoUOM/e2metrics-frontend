@@ -20,7 +20,14 @@ const Notifications = () => {
     setLoading(true);
     axios
       .get(
-        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserAlertLimits?userId=${userId}`
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserAlertLimits?userId=${userId}`,
+        {
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
       )
       .then((res) => {
         setValues({
@@ -57,6 +64,11 @@ const Notifications = () => {
       .post(
         `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/setUserAlertLimits`,
         {
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
           wontFixIssuesRatio: values.wontFixIssuesRatio.toString(),
           weeklyCommitCount: values.weeklyCommitCount.toString(),
           meanPullRequestResponseTime:

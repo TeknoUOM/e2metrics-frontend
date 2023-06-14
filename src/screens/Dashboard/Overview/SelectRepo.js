@@ -34,6 +34,11 @@ export default function SelectRepo({ repos = [], setReponame, setOwnername }) {
     repos &&
       axios
         .delete(`${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/removeRepo`, {
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
           userId: userId,
           ghUser: repos[selectedIndex].ownername,
           repo: repos[selectedIndex].reponame,

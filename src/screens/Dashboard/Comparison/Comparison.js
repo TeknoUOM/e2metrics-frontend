@@ -190,7 +190,14 @@ function Content({ size: { width }, editLayout }) {
     repo2 &&
       axios
         .get(
-          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/metrics/getRepoLatestMonthlyPerfomance?userId=${userId}&ownername=${repo2Details[0]}&reponame=${repo2Details[1]}`
+          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/metrics/getRepoLatestMonthlyPerfomance?userId=${userId}&ownername=${repo2Details[0]}&reponame=${repo2Details[1]}`,
+          {
+            headers: {
+              "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+              accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
         )
         .then((res) => {
           setChartData2(res.data.reverse());
@@ -208,7 +215,14 @@ function Content({ size: { width }, editLayout }) {
     repo1 &&
       axios
         .get(
-          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/metrics/getRepoLatestMonthlyPerfomance?userId=${userId}&ownername=${repo1Details[0]}&reponame=${repo1Details[1]}`
+          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/metrics/getRepoLatestMonthlyPerfomance?userId=${userId}&ownername=${repo1Details[0]}&reponame=${repo1Details[1]}`,
+          {
+            headers: {
+              "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+              accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
         )
         .then((res) => {
           setChartData(res.data.reverse());
@@ -224,7 +238,14 @@ function Content({ size: { width }, editLayout }) {
     setLoading(true);
     axios
       .get(
-        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserAllRepos?userId=${userId}`
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserAllRepos?userId=${userId}`,
+        {
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
       )
       .then((res) => {
         setRepos(res.data);

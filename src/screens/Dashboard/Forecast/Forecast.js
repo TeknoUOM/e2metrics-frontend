@@ -191,7 +191,14 @@ function Content({ size: { width }, editLayout }) {
       reponame &&
       axios
         .get(
-          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/forecast/getForecast?usreId=${userId}&ownername=${ownername}&reponame=${reponame}`
+          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/forecast/getForecast?usreId=${userId}&ownername=${ownername}&reponame=${reponame}`,
+          {
+            headers: {
+              "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+              accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
         )
         .then((res) => {
           setChartData(res.data);
@@ -207,7 +214,14 @@ function Content({ size: { width }, editLayout }) {
     setLoading(true);
     axios
       .get(
-        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserAllRepos?userId=${userId}`
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserAllRepos?userId=${userId}`,
+        {
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
       )
       .then((res) => {
         setRepos(res.data);

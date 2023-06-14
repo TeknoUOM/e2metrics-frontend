@@ -7,10 +7,18 @@ const AuthorizeToGithub = () => {
   const userId = sessionStorage.getItem("userId");
   const onSuccess = (res) => {
     axios
-      .post("http://localhost:8080/user/authorizeToGithub", {
-        code: res.code,
-        userId: userId,
-      })
+      .post(
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/authorizeToGithub`,
+        {
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          code: res.code,
+          userId: userId,
+        }
+      )
       .then((response) => {
         console.log(response);
       })

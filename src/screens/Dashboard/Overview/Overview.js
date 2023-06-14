@@ -337,7 +337,14 @@ function Content({ size: { width }, editLayout }) {
       reponame &&
       axios
         .get(
-          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/metrics/getRepoLatestDailyPerfomance?userId=${userId}&ownername=${ownername}&reponame=${reponame}`
+          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/metrics/getRepoLatestDailyPerfomance?userId=${userId}&ownername=${ownername}&reponame=${reponame}`,
+          {
+            headers: {
+              "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+              accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
         )
         .then((res) => {
           setCardData(res.data[0]);
@@ -355,7 +362,14 @@ function Content({ size: { width }, editLayout }) {
       reponame &&
       axios
         .get(
-          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/metrics/getRepoLatestWeeklyPerfomance?userId=${userId}&ownername=${ownername}&reponame=${reponame}`
+          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/metrics/getRepoLatestWeeklyPerfomance?userId=${userId}&ownername=${ownername}&reponame=${reponame}`,
+          {
+            headers: {
+              "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+              accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
         )
         .then((res) => {
           setChartData(res.data.reverse());
@@ -380,7 +394,14 @@ function Content({ size: { width }, editLayout }) {
       });
     axios
       .get(
-        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserAllRepos?userId=${userId}`
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserAllRepos?userId=${userId}`,
+        {
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
       )
       .then((res) => {
         setRepos(res.data);
@@ -490,5 +511,4 @@ function saveToLS(key, value) {
       [key]: value,
     })
   );
-  axios.post();
 }

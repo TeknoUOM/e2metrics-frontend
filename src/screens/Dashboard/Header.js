@@ -48,7 +48,14 @@ export default function Header({ handleDrawerToggle }) {
   useEffect(() => {
     axios
       .get(
-        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserAlerts?userId=${userId}`
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserAlerts?userId=${userId}`,
+        {
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
       )
       .then((res) => {
         setAlertCount(res.data.length);
@@ -75,6 +82,11 @@ export default function Header({ handleDrawerToggle }) {
         `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/setUserAlertsIsShowed`,
         {
           userId: userId,
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
         }
       )
       .then((res) => {
@@ -91,6 +103,11 @@ export default function Header({ handleDrawerToggle }) {
       .post(
         `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/changeUserLayout`,
         {
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
           overviewlayout: sessionStorage.getItem("rgl-8-overview"),
           comparisonLayout: sessionStorage.getItem("rgl-8-comparison"),
           forecastLayout: sessionStorage.getItem("rgl-8-forecast"),

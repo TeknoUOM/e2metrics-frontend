@@ -14,7 +14,14 @@ function Content({}) {
   const changeUserGroup = (group, userId) => {
     axios
       .put(
-        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/changeUserGroup?userId=${userId}&groupName=${group}`
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/changeUserGroup?userId=${userId}&groupName=${group}`,
+        {
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
       )
       .then((res) => {
         setRoleChanged(!roleChanged);
@@ -94,7 +101,16 @@ function Content({}) {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getAllUserDetails`)
+      .get(
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getAllUserDetails`,
+        {
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      )
       .then((res) => {
         let temp = res.data.map((user) => {
           return {

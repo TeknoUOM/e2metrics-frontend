@@ -5,7 +5,9 @@ import axios from "axios";
 function ImageUpload() {
   const [image, setImage] = useState(null);
   const hiddenFileInput = useRef(null);
-  const [previewimage, setPreviewImage] = useState(null);
+  const [previewimage, setPreviewImage] = useState(
+    "https://www.w3schools.com/howto/img_avatar.png"
+  );
   const userId = sessionStorage.getItem("userId");
 
   const handleImageChange = (event) => {
@@ -20,7 +22,14 @@ function ImageUpload() {
   useEffect(() => {
     axios
       .get(
-        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getPic?userId=${userId}`
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getPic?userId=${userId}`,
+        {
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
       )
       .then((res) => {
         setPreviewImage(res.data);
@@ -35,6 +44,11 @@ function ImageUpload() {
       .post(`${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/changePic`, {
         image: image,
         userId: userId,
+        headers: {
+          "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+          accept: "application/json",
+          "Content-Type": "application/json",
+        },
       })
       .then((res) => {
         console.log(res);

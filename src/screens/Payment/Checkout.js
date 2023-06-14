@@ -36,7 +36,14 @@ const Checkout = ({ plan, amount }) => {
         //change user group on asgardeo
         axios
           .put(
-            `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/changeUserGroup?userId=${userId}&groupName=${plan}`
+            `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/changeUserGroup?userId=${userId}&groupName=${plan}`,
+            {
+              headers: {
+                "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+                accept: "application/json",
+                "Content-Type": "application/json",
+              },
+            }
           )
           .then((res) => {
             //save payment
@@ -56,6 +63,11 @@ const Checkout = ({ plan, amount }) => {
                       details.purchase_units[0].amount.currency_code,
                   },
                   subscription: plan,
+                  headers: {
+                    "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+                    accept: "application/json",
+                    "Content-Type": "application/json",
+                  },
                 }
               )
               .then((res) => {

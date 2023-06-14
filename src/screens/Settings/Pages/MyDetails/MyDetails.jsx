@@ -22,7 +22,14 @@ function MyDetails() {
     setLoading(true);
     axios
       .get(
-        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserDetails?userId=${userId}`
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserDetails?userId=${userId}`,
+        {
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
       )
       .then((response) => {
         console.log(response);
@@ -93,6 +100,11 @@ function MyDetails() {
           mobile: mobile,
           email: email,
           userId: userId,
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
         }
       )
       .then((res) => {

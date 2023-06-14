@@ -102,7 +102,14 @@ const Dashboard = () => {
     userId &&
       axios
         .get(
-          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserLayout?userId=${userId}`
+          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserLayout?userId=${userId}`,
+          {
+            headers: {
+              "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+              accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
         )
         .then((res) => {
           sessionStorage.setItem("rgl-8-overview", res.data.OverviewLayout);

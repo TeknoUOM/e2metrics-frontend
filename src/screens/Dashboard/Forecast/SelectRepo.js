@@ -37,6 +37,11 @@ export default function SelectRepo({ repos = [], setReponame, setOwnername }) {
           userId: userId,
           ghUser: repos[selectedIndex].ownername,
           repo: repos[selectedIndex].reponame,
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
         })
         .then((res) => {
           console.log(res);

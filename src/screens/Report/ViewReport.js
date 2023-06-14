@@ -14,7 +14,14 @@ function ViewReport() {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:8080/metrics/getMonthlyReport?userId=${userId}&startDate=${startDate}&endDate=${endDate}`
+        `http://localhost:8080/metrics/getMonthlyReport?userId=${userId}&startDate=${startDate}&endDate=${endDate}`,
+        {
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
       )
       .then((response) => {
         let data = [];

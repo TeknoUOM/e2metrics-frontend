@@ -34,7 +34,14 @@ const Billing = () => {
     setLoading(true);
     axios
       .get(
-        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/payment/savePayment?userId=${userId}`
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/payment/savePayment?userId=${userId}`,
+        {
+          headers: {
+            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
       )
       .then((res) => {
         setData(res.data);
