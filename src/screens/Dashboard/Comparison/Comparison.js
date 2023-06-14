@@ -187,7 +187,6 @@ function Content({ size: { width }, editLayout }) {
   };
 
   useEffect(() => {
-    console.log("hi");
     setLoading(true);
     ownername2 &&
       reponame2 &&

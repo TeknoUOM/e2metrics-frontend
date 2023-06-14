@@ -153,9 +153,14 @@ export default function Header({ handleDrawerToggle }) {
         >
           {userAlerts.map((alert) => (
             <MenuItem disabled onClick={handleNotificationClose}>
-              {alert.Alert}
+              {`${alert.DateTime} - ${alert.Alert}`}
             </MenuItem>
           ))}
+          {userAlerts.length == 0 ? (
+            <MenuItem disabled onClick={handleNotificationClose}>
+              no any notifications
+            </MenuItem>
+          ) : null}
         </Menu>
 
         <IconButton
