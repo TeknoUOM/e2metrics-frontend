@@ -32,7 +32,6 @@ function MyDetails() {
         }
       )
       .then((response) => {
-        console.log(response);
         setEmail(response.data.emails[0]);
         setFirstName(response.data.name.givenName);
         setLastName(response.data.name.familyName);
