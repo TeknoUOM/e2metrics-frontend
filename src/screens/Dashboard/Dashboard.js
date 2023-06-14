@@ -5,12 +5,14 @@ import Loading from "../../common/Loading/Loading";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import { CssBaseline, ThemeProvider, createTheme } from "@material-ui/core";
-import Overview from "./Overview";
+import Overview from "./Overview/Overview";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import "./styles.scss";
 import Swal from "sweetalert2";
-import UnderConstruction from "../../common/UnderConstruction/UnderConstruction";
+import axios from "axios";
+import Comparison from "./Comparison/Comparison";
+import Forecast from "./Forecast/Forecast";
 
 const drawerWidth = 240;
 
@@ -49,11 +51,11 @@ const Dashboard = () => {
   const { getBasicUserInfo, signOut, state } = useAuthContext();
   const classes = useStyles();
   const [open, setOpen] = useState(true);
-  const [tab, setTab] = useState("overview");
   const [darkMode, setDarkMode] = useState(false);
   const [loading, setLoading] = useState(true);
   const history = useHistory();
   const role = sessionStorage.getItem("role");
+  const userId = sessionStorage.getItem("userId");
   const [editLayout, setEditLayout] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -95,6 +97,24 @@ const Dashboard = () => {
         });
     role && setLoading(false);
   }, [state.isAuthenticated]);
+  useEffect(() => {
+    setLoading(true);
+    userId &&
+      axios
+        .get(
+          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserLayout?userId=${userId}`
+        )
+        .then((res) => {
+          sessionStorage.setItem("rgl-8-overview", res.data.OverviewLayout);
+          sessionStorage.setItem("rgl-8-forecast", res.data.ComparisonLayout);
+          sessionStorage.setItem("rgl-8-comparison", res.data.ForecastLayout);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+        });
+  }, [userId]);
 
   return (
     <>
@@ -109,7 +129,6 @@ const Dashboard = () => {
               <Sidebar
                 handleDrawerClose={handleDrawerClose}
                 open={open}
-                tab={tab}
                 editLayout={editLayout}
                 setEditLayout={setEditLayout}
               />
@@ -124,10 +143,10 @@ const Dashboard = () => {
                     <Overview editLayout={editLayout} />
                   </Route>
                   <Route path={`/dashboard/comparison`}>
-                    <UnderConstruction feature="Comparison" />
+                    <Comparison editLayout={editLayout} />
                   </Route>
                   <Route path={`/dashboard/forecast`}>
-                    <UnderConstruction feature="Forecast" />
+                    <Forecast editLayout={editLayout} />
                   </Route>
                 </Switch>
               </main>

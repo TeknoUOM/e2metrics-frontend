@@ -37,6 +37,7 @@ export default function Header({ handleDrawerToggle }) {
   const classes = useStyles();
   const { signOut } = useAuthContext();
   const [userAlerts, setUserAlerts] = useState([]);
+  const [alertCount, setAlertCount] = useState(0);
   const userId = sessionStorage.getItem("userId");
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -50,6 +51,7 @@ export default function Header({ handleDrawerToggle }) {
         `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserAlerts?userId=${userId}`
       )
       .then((res) => {
+        setAlertCount(res.data.length);
         setUserAlerts(res.data);
       })
       .catch((err) => {
@@ -67,15 +69,45 @@ export default function Header({ handleDrawerToggle }) {
     setAnchorEl(null);
   };
   const handleNotificationClose = () => {
+    setAlertCount(0);
+    axios
+      .post(
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/setUserAlertsIsShowed`,
+        {
+          userId: userId,
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     setAnchorElNotification(null);
   };
 
   const handleLogout = () => {
+    axios
+      .post(
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/changeUserLayout`,
+        {
+          overviewlayout: sessionStorage.getItem("rgl-8-overview"),
+          comparisonLayout: sessionStorage.getItem("rgl-8-comparison"),
+          forecastLayout: sessionStorage.getItem("rgl-8-forecast"),
+          userId: userId,
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     sessionStorage.removeItem("role");
     sessionStorage.removeItem("userId");
-    global.localStorage.removeItem("rgl-8-overview");
-    global.localStorage.removeItem("rgl-8-comparison");
-    global.localStorage.removeItem("rgl-8-forecast");
+    sessionStorage.removeItem("rgl-8-overview");
+    sessionStorage.removeItem("rgl-8-comparison");
+    sessionStorage.removeItem("rgl-8-forecast");
     signOut();
   };
 
@@ -105,10 +137,7 @@ export default function Header({ handleDrawerToggle }) {
           className={classes.rightIcons}
           onClick={handleNotificationClick}
         >
-          <Badge
-            badgeContent={userAlerts && userAlerts.length | 0}
-            color="secondary"
-          >
+          <Badge badgeContent={alertCount | 0} color="secondary">
             <NotificationsIcon />
           </Badge>
         </IconButton>

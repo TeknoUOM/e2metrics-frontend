@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Drawer from "@material-ui/core/Drawer";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
@@ -43,12 +43,12 @@ const useStyles = makeStyles((theme) => ({
 export default function ({
   open,
   handleDrawerClose,
-  tab,
   editLayout,
   setEditLayout,
 }) {
   const classes = useStyles();
-  const { url, path } = useRouteMatch();
+  const { url } = useRouteMatch();
+  const tab = url.split("/")[url.split("/").length - 1];
 
   const handleClick = () => {
     setEditLayout(!editLayout);
@@ -72,8 +72,8 @@ export default function ({
       <Divider />
       <div className="">
         <List>
-          <Link className="is-active" to={`/dashboard/overview`}>
-            <ListItem button>
+          <Link to={`/dashboard/overview`}>
+            <ListItem selected={tab == "overview"} button>
               <ListItemIcon>
                 <OverviewIcon />
               </ListItemIcon>
@@ -81,7 +81,7 @@ export default function ({
             </ListItem>
           </Link>
           <Link to={`/dashboard/comparison`}>
-            <ListItem button>
+            <ListItem selected={tab == "comparison"} button>
               <ListItemIcon>
                 <CompareIcon />
               </ListItemIcon>
@@ -90,7 +90,7 @@ export default function ({
           </Link>
 
           <Link to={"/dashboard/forecast"}>
-            <ListItem button>
+            <ListItem selected={tab == "forecast"} button>
               <ListItemIcon>
                 <ForecastIcon />
               </ListItemIcon>

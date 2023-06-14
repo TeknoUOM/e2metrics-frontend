@@ -6,7 +6,7 @@ import WidgetCard from "./WidgetCard";
 import WidgetChart from "./WidgetChart";
 import SelectRepo from "./SelectRepo";
 import axios from "axios";
-import Loading from "../../common/Loading/Loading";
+import AskToAddRepo from "../../../common/AskToAddRepo/AskToAddRepo";
 
 const originalItems = [
   "totalNumberOfLines",
@@ -79,7 +79,6 @@ const initialLayouts = {
       w: 2,
       h: 2,
       isResizable: false,
-      isDraggable: false,
       color: "#BAEDBD",
     },
     {
@@ -89,7 +88,6 @@ const initialLayouts = {
       w: 2,
       h: 2,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "BugFixRatio",
@@ -98,7 +96,6 @@ const initialLayouts = {
       w: 2,
       h: 2,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "CommitCount",
@@ -107,7 +104,6 @@ const initialLayouts = {
       w: 2,
       h: 2,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "MeanLeadFixTime",
@@ -116,7 +112,6 @@ const initialLayouts = {
       w: 2,
       h: 2,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "PullRequestFrequency",
@@ -125,7 +120,6 @@ const initialLayouts = {
       w: 2,
       h: 2,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "WeeklyCommitCount",
@@ -134,7 +128,6 @@ const initialLayouts = {
       w: 2,
       h: 2,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "OpenedIssuesCount",
@@ -143,7 +136,6 @@ const initialLayouts = {
       w: 2,
       h: 2,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "AllIssuesCount",
@@ -152,7 +144,6 @@ const initialLayouts = {
       w: 2,
       h: 2,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "WontFixIssuesRatio",
@@ -161,7 +152,6 @@ const initialLayouts = {
       w: 2,
       h: 2,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "MeanPullRequestResponseTime",
@@ -170,7 +160,6 @@ const initialLayouts = {
       w: 2,
       h: 2,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "PullRequestCount",
@@ -179,7 +168,6 @@ const initialLayouts = {
       w: 2,
       h: 2,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "MeanLeadTimeForPulls",
@@ -188,7 +176,6 @@ const initialLayouts = {
       w: 2,
       h: 2,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "ResponseTimeforIssue",
@@ -197,7 +184,6 @@ const initialLayouts = {
       w: 2,
       h: 2,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "totalNumberOfLinesChart",
@@ -207,7 +193,6 @@ const initialLayouts = {
       h: 5,
       isResizable: false,
       color: "#BAEDBD",
-      isDraggable: false,
     },
     {
       i: "IssuesFixingFrequencyChart",
@@ -216,7 +201,6 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "BugFixRatioChart",
@@ -225,7 +209,6 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "CommitCountChart",
@@ -234,7 +217,6 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "MeanLeadFixTimeChart",
@@ -243,7 +225,6 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "PullRequestFrequencyChart",
@@ -252,7 +233,6 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "WeeklyCommitCountChart",
@@ -261,7 +241,6 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "OpenedIssuesCountChart",
@@ -270,7 +249,6 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "AllIssuesCountChart",
@@ -279,7 +257,6 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "WontFixIssuesRatioChart",
@@ -288,7 +265,6 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "MeanPullRequestResponseTimeChart",
@@ -297,7 +273,6 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "PullRequestCountChart",
@@ -306,7 +281,6 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "MeanLeadTimeForPullsChart",
@@ -315,7 +289,6 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
-      isDraggable: false,
     },
     {
       i: "ResponseTimeforIssueChart",
@@ -324,13 +297,13 @@ const initialLayouts = {
       w: 4,
       h: 5,
       isResizable: false,
-      isDraggable: false,
     },
   ],
 };
 function Content({ size: { width }, editLayout }) {
   const [cardData, setCardData] = useState(null);
   const [reponame, setReponame] = useState(null);
+  const [noRepo, setNoRepo] = useState(false);
   const [ownername, setOwnername] = useState(null);
   const [chartData, setChartData] = useState([]);
   const [repos, setRepos] = useState([]);
@@ -398,8 +371,13 @@ function Content({ size: { width }, editLayout }) {
       )
       .then((res) => {
         setRepos(res.data);
-        setOwnername(res.data[0].ownername);
-        setReponame(res.data[0].reponame);
+        if (res.data.length > 0) {
+          setNoRepo(false);
+          setOwnername(res.data[0].ownername);
+          setReponame(res.data[0].reponame);
+        } else {
+          setNoRepo(true);
+        }
         setLoading(false);
       })
       .catch((err) => {
@@ -408,86 +386,76 @@ function Content({ size: { width }, editLayout }) {
       });
   }, []);
 
-  useEffect(() => {
-    let lg = [];
-    if (editLayout) {
-      layouts.lg.forEach((element) => {
-        let temp = element;
-        temp.isDraggable = true;
-        lg.push(temp);
-      });
-    } else {
-      layouts.lg.forEach((element) => {
-        let temp = element;
-        temp.isDraggable = false;
-        lg.push(temp);
-      });
-    }
-    setLayouts({ lg: lg });
-  }, [editLayout]);
-
   return (
     <>
-      {editLayout ? (
-        <TopBar
-          onLayoutSave={onLayoutSave}
-          items={items}
-          onRemoveItem={onRemoveItem}
-          onAddItem={onAddItem}
-          originalItems={originalItems}
-        />
-      ) : (
-        <SelectRepo
-          repos={repos}
-          setOwnername={setOwnername}
-          setReponame={setReponame}
-        />
-      )}
-      <ResponsiveGridLayout
-        className="layout"
-        layouts={layouts}
-        breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-        cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
-        rowHeight={60}
-        width={width}
-        onLayoutChange={onLayoutChange}
-        style={{ minHeight: "80vh" }}
-      >
-        {items.map((key) => (
-          <div
-            key={key}
-            className="widget"
-            data-grid={
-              initialLayouts.lg.filter((element) => element.i == key)[0]
-            }
+      {!noRepo ? (
+        <>
+          {editLayout ? (
+            <TopBar
+              onLayoutSave={onLayoutSave}
+              items={items}
+              onRemoveItem={onRemoveItem}
+              onAddItem={onAddItem}
+              originalItems={originalItems}
+            />
+          ) : (
+            <SelectRepo
+              repos={repos}
+              setOwnername={setOwnername}
+              setReponame={setReponame}
+            />
+          )}
+          <ResponsiveGridLayout
+            className="layout"
+            layouts={layouts}
+            breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+            cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+            rowHeight={60}
+            width={width}
+            onLayoutChange={onLayoutChange}
+            style={{ minHeight: "80vh" }}
           >
-            {key.includes("Chart") ? (
-              <>
-                <WidgetChart
-                  id={key}
-                  onRemoveItem={onRemoveItem}
-                  loading={loading}
-                  color={originalItemsColors[key]}
-                  data={
-                    chartData &&
-                    chartData.map((day) => {
-                      return { [day.Date]: day[key.replace("Chart", "")] };
-                    })
-                  }
-                />
-              </>
-            ) : (
-              <WidgetCard
-                id={key}
-                onRemoveItem={onRemoveItem}
-                loading={loading}
-                data={cardData}
-                color={originalItemsColors[key]}
-              />
-            )}
-          </div>
-        ))}
-      </ResponsiveGridLayout>
+            {items.map((key) => (
+              <div
+                key={key}
+                className="widget"
+                data-grid={
+                  initialLayouts.lg.filter((element) => element.i == key)[0]
+                }
+              >
+                {key.includes("Chart") ? (
+                  <>
+                    <WidgetChart
+                      id={key}
+                      onRemoveItem={onRemoveItem}
+                      loading={loading}
+                      color={originalItemsColors[key]}
+                      data={
+                        chartData &&
+                        chartData.map((day) => {
+                          return { [day.Date]: day[key.replace("Chart", "")] };
+                        })
+                      }
+                    />
+                  </>
+                ) : (
+                  <WidgetCard
+                    id={key}
+                    onRemoveItem={onRemoveItem}
+                    loading={loading}
+                    data={cardData}
+                    color={originalItemsColors[key]}
+                  />
+                )}
+              </div>
+            ))}
+          </ResponsiveGridLayout>
+        </>
+      ) : (
+        <>
+          <AskToAddRepo />
+        </>
+      )}
     </>
   );
 }
@@ -496,22 +464,18 @@ export default withSize({ refreshMode: "debounce", refreshRate: 60 })(Content);
 
 function getFromLS(key) {
   let ls = {};
-  if (global.localStorage) {
-    try {
-      ls = JSON.parse(global.localStorage.getItem("rgl-8-overview")) || {};
-    } catch (e) {}
-  }
+  try {
+    ls = JSON.parse(sessionStorage.getItem("rgl-8-overview")) || {};
+  } catch (e) {}
   return ls[key];
 }
 
 function saveToLS(key, value) {
-  if (global.localStorage) {
-    global.localStorage.setItem(
-      "rgl-8-overview",
-      JSON.stringify({
-        [key]: value,
-      })
-    );
-  }
-  console.log(global.localStorage.getItem("rgl-8-overview"));
+  sessionStorage.setItem(
+    "rgl-8-overview",
+    JSON.stringify({
+      [key]: value,
+    })
+  );
+  axios.post();
 }

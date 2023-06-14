@@ -6,7 +6,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import { CardContent, CardActions, Button } from "@material-ui/core";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
-import StatBox from "./StatBox";
+import StatBox from "../StatBox";
 
 const widgetNames = {
   totalNumberOfLines: "Lines of Code",
