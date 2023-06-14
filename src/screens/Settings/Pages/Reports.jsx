@@ -3,18 +3,39 @@ import "./Reports.css";
 import axios from "axios";
 import Loading from "../../../common/Loading/Loading";
 import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 
 const Reports = () => {
   const userId = sessionStorage.getItem("userId");
   const [loading, setLoading] = useState(false);
   const [checked, setChecked] = useState(false);
   const [changed, setChanged] = useState(false);
+  const history = useHistory();
 
   const changeReport = () => {
     setChecked(!checked);
     setChanged(true);
   };
-  const handleReport = () => {};
+
+  var now = new Date();
+  var prevMonthLastDate = new Date(now.getFullYear(), now.getMonth(), 0);
+  var prevMonthFirstDate = new Date(
+    now.getFullYear() - (now.getMonth() > 0 ? 0 : 1),
+    (now.getMonth() - 1 + 12) % 12,
+    1
+  );
+  const prevMonthLastDateString = `${prevMonthLastDate.getFullYear()}-${
+    prevMonthLastDate.getMonth() + 1
+  }-${prevMonthLastDate.getDate()}`;
+  const prevMonthFirstDateString = `${prevMonthFirstDate.getFullYear()}-${
+    prevMonthFirstDate.getMonth() + 1
+  }-${prevMonthFirstDate.getDate()}`;
+
+  const handleReport = () => {
+    history.push(
+      `/report/${userId}/${prevMonthFirstDateString}/${prevMonthLastDateString}`
+    );
+  };
 
   const handleSave = () => {
     setLoading(true);

@@ -2,14 +2,19 @@ import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import PdfDocument from "./Report";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
+import { Button } from "@mui/material";
 
 function ViewReport() {
   const fileName = "Monthly Report.pdf";
+  const { userId, startDate, endDate } = useParams();
   const [reportData, setReportData] = useState([]);
+  const history = useHistory();
   useEffect(() => {
     axios
       .get(
-        "http://localhost:8080/metrics/getMonthlyReport?userId=8927e648-f434-4056-bd8c-892c3f70a83b&startDate=2023-06-01&endDate=2023-06-14"
+        `http://localhost:8080/metrics/getMonthlyReport?userId=${userId}&startDate=${startDate}&endDate=${endDate}`
       )
       .then((response) => {
         let data = [];
@@ -41,10 +46,22 @@ function ViewReport() {
           fileName={fileName}
         >
           {({ blob, url, loading, error }) =>
-            loading ? "Loading..." : "Download Report"
+            loading ? (
+              <>
+                <ClipLoader />
+              </>
+            ) : (
+              "Download Report"
+            )
           }
         </PDFDownloadLink>
       </div>
+      <Button
+        variant="contained"
+        onClick={() => history.push("/settings/reports")}
+      >
+        Back
+      </Button>
     </div>
   );
 }

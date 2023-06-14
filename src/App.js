@@ -26,7 +26,6 @@ function App() {
           <Route exact path="/feature" component={FeaturePage}></Route>
           <Route exact path="/price" component={PricePage}></Route>
           <Route exact path="/LogFirst" component={LogFirst}></Route>
-          <Route exact path="/report" component={ViewReport}></Route>
 
           <Route path="/about" component={About}></Route>
           {state.isAuthenticated ? (
@@ -52,6 +51,11 @@ function App() {
                 exact
                 path="/admindashboard"
                 component={AdminDashboard}
+              ></Route>
+              <Route
+                exact
+                path="/report/:userId/:startDate/:endDate"
+                component={ViewReport}
               ></Route>
             </>
           ) : (
