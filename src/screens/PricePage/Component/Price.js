@@ -112,10 +112,7 @@ const Price = ({ setLoading }) => {
                     <li className="my-6">
                       10 Number of Repositories could add to analyze
                     </li>
-                    <li className="my-6">
-                      Primitive, Complex and individual developer Metrics
-                      allowed
-                    </li>
+                    <li className="my-6">Primitive, Complex Metrics allowed</li>
 
                     {state.isAuthenticated ? (
                       role == roles.BASIC ? (
@@ -168,10 +165,8 @@ const Price = ({ setLoading }) => {
                       Unlimited Number of Repositories could add to analyze
                     </li>
                     <li className="my-6">
-                      Primitive, Complex and individual developer Metrics
-                      allowed
+                      Primitive, Complex and Forecast Metrics allowed
                     </li>
-                    <li className="my-6">Metrics forecast</li>
                     {state.isAuthenticated ? (
                       role == roles.PREMIUM ? (
                         <Button

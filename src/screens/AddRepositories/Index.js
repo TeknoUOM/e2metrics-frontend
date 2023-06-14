@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import Loading from "../../common/Loading/Loading";
+import { IconButton } from "@mui/material";
 import LoginGithub from "react-login-github";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import Swal from "sweetalert2";
 import "./Index.scss";
 
@@ -94,6 +96,13 @@ const AddRepositories = () => {
     <>
       <section className="hero is-fullheight">
         <div className="hero-body">
+          <IconButton
+            variant="contained"
+            sx={{ position: "fixed", top: 0, left: 0, zIndex: 2000 }}
+            onClick={() => history.push("/dashboard/overview")}
+          >
+            <KeyboardBackspaceIcon fontSize="large" />
+          </IconButton>
           <div className="container has-text-centered">
             <div className="card">
               <div className="card-content">

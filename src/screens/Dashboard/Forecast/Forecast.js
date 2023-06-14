@@ -6,6 +6,7 @@ import WidgetChart from "./WidgetChart";
 import SelectRepo from "./SelectRepo";
 import AskToAddRepo from "../../../common/AskToAddRepo/AskToAddRepo";
 import axios from "axios";
+import NotAvailable from "../../../common/NotAvailable/NotAvailable";
 
 const originalItems = [
   "totalNumberOfLinesChart",
@@ -165,6 +166,7 @@ function Content({ size: { width }, editLayout }) {
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState(originalItems);
+  const role = sessionStorage.getItem("role");
   const userId = sessionStorage.getItem("userId");
   const [layouts, setLayouts] = useState(
     getFromLS("layouts") || initialLayouts
@@ -226,60 +228,66 @@ function Content({ size: { width }, editLayout }) {
 
   return (
     <>
-      {!noRepo ? (
-        <>
-          {editLayout ? (
-            <TopBar
-              onLayoutSave={onLayoutSave}
-              items={items}
-              onRemoveItem={onRemoveItem}
-              onAddItem={onAddItem}
-              originalItems={originalItems}
-            />
-          ) : (
-            <SelectRepo
-              repos={repos}
-              setOwnername={setOwnername}
-              setReponame={setReponame}
-            />
-          )}
-          <ResponsiveGridLayout
-            className="layout"
-            layouts={layouts}
-            breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-            cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
-            rowHeight={60}
-            width={width}
-            onLayoutChange={onLayoutChange}
-            style={{ minHeight: "80vh" }}
-          >
-            {items.map((key) => (
-              <div
-                key={key}
-                className="widget"
-                data-grid={
-                  initialLayouts.lg.filter((element) => element.i == key)[0]
-                }
-              >
-                <WidgetChart
-                  id={key}
-                  onRemoveItem={onRemoveItem}
-                  loading={loading}
-                  color={originalItemsColors[key]}
-                  data={
-                    chartData &&
-                    chartData.map((day) => {
-                      return { [day.Date]: day[key.replace("Chart", "")] };
-                    })
-                  }
-                />
-              </div>
-            ))}
-          </ResponsiveGridLayout>
-        </>
+      {(role == "Free") | (role == "Basic") ? (
+        <NotAvailable role={role} />
       ) : (
         <>
-          <AskToAddRepo />
+          {!noRepo ? (
+            <>
+              {editLayout ? (
+                <TopBar
+                  onLayoutSave={onLayoutSave}
+                  items={items}
+                  onRemoveItem={onRemoveItem}
+                  onAddItem={onAddItem}
+                  originalItems={originalItems}
+                />
+              ) : (
+                <SelectRepo
+                  repos={repos}
+                  setOwnername={setOwnername}
+                  setReponame={setReponame}
+                />
+              )}
+              <ResponsiveGridLayout
+                className="layout"
+                layouts={layouts}
+                breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+                cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+                rowHeight={60}
+                width={width}
+                onLayoutChange={onLayoutChange}
+                style={{ minHeight: "80vh" }}
+              >
+                {items.map((key) => (
+                  <div
+                    key={key}
+                    className="widget"
+                    data-grid={
+                      initialLayouts.lg.filter((element) => element.i == key)[0]
+                    }
+                  >
+                    <WidgetChart
+                      id={key}
+                      onRemoveItem={onRemoveItem}
+                      loading={loading}
+                      color={originalItemsColors[key]}
+                      data={
+                        chartData &&
+                        chartData.map((day) => {
+                          return { [day.Date]: day[key.replace("Chart", "")] };
+                        })
+                      }
+                    />
+                  </div>
+                ))}
+              </ResponsiveGridLayout>
+            </>
+          ) : (
+            <>
+              <AskToAddRepo />
+            </>
+          )}
         </>
       )}
     </>

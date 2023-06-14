@@ -15,6 +15,7 @@ import AdminDashboard from "./screens/AdminDashboard/AdminDashboard";
 import "./App.css";
 import About from "./screens/AboutPage/About";
 import Settings from "./screens/Settings";
+import NotFound from "./common/NotFound/NotFound";
 
 function App() {
   const { state } = useAuthContext();

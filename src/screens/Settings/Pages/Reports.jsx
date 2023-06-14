@@ -70,7 +70,6 @@ const Reports = () => {
         `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUsersRepotsStatus?userId=${userId}`
       )
       .then((res) => {
-        console.log();
         if (res.data === 0) {
           setChecked(false);
         } else if (res.data === 1) {
