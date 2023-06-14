@@ -6,7 +6,7 @@ import Payment from "./screens/Payment/PaymentPage";
 import FeaturePage from "./screens/FeaturePage/FeaturePage";
 import PricePage from "./screens/PricePage/PricePage";
 import PaymentPage from "./screens/Payment/PaymentPage";
-import PaymentPage2 from "./screens/Payment2/PaymentPage";
+import ViewReport from "./screens/Report/ViewReport";
 import AddRepositories from "./screens/AddRepositories/Index";
 import PickRepositories from "./screens/PickRepository/Index";
 import Dashboard from "./screens/Dashboard/Dashboard";
@@ -26,6 +26,7 @@ function App() {
           <Route exact path="/feature" component={FeaturePage}></Route>
           <Route exact path="/price" component={PricePage}></Route>
           <Route exact path="/LogFirst" component={LogFirst}></Route>
+          <Route exact path="/report" component={ViewReport}></Route>
 
           <Route path="/about" component={About}></Route>
           {state.isAuthenticated ? (

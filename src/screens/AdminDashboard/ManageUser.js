@@ -14,8 +14,7 @@ function Content({}) {
   const changeUserGroup = (group, userId) => {
     axios
       .put(
-        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/changeUserGroup?userId=${userId}&groupName=${group}`,
-        {}
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/changeUserGroup?userId=${userId}&groupName=${group}`
       )
       .then((res) => {
         setRoleChanged(!roleChanged);
