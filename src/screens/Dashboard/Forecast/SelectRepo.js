@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "center",
+    "&:hover:not(.Mui-disabled)": {
+      cursor: "pointer",
+    },
   },
 }));
 

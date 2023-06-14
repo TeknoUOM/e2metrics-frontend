@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "center",
+    "&:hover:not(.Mui-disabled)": {
+      cursor: "pointer",
+    },
   },
 }));
 
@@ -66,11 +69,7 @@ export default function SelectRepo({
   return (
     <Card className={classes.root}>
       <div>
-        <List
-          component="nav"
-          aria-label="Device settings"
-          sx={{ bgcolor: "rgb(60,231,148,0.9)" }}
-        >
+        <List component="nav" aria-label="Device settings">
           <ListItem
             id="lock-button"
             aria-haspopup="listbox"
@@ -108,11 +107,7 @@ export default function SelectRepo({
       </div>
 
       <div>
-        <List
-          component="nav"
-          aria-label="Device settings"
-          sx={{ bgcolor: "rgba(255, 99, 132,0.9)" }}
-        >
+        <List component="nav" aria-label="Device settings">
           <ListItem
             id="lock-button"
             aria-haspopup="listbox"
