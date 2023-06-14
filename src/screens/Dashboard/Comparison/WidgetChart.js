@@ -30,8 +30,8 @@ export default function Widget({
   onRemoveItem,
   loading,
   data = {},
-  reponame,
-  reponame2,
+  repo1,
+  repo2,
   data2 = {},
   color,
 }) {
@@ -80,13 +80,13 @@ export default function Widget({
     labels,
     datasets: [
       {
-        label: reponame,
+        label: repo1,
         data: data.map((row, index) => row[labels[index]]),
         borderColor: "rgb(60,231,148)",
         backgroundColor: "rgba(60,231,148, 0.5)",
       },
       {
-        label: reponame2,
+        label: repo2,
         data: data2.map((row, index) => row[labels2[index]]),
         borderColor: "rgba(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",

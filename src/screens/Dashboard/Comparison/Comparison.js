@@ -3,7 +3,7 @@ import { Responsive as ResponsiveGridLayout } from "react-grid-layout";
 import { withSize } from "react-sizeme";
 import TopBar from "../TopBar";
 import WidgetChart from "./WidgetChart";
-import SelectRepo from "./SelectRepos";
+import SelectRepos from "./SelectRepos";
 import AskToAddRepo from "../../../common/AskToAddRepo/AskToAddRepo";
 import axios from "axios";
 
@@ -159,12 +159,10 @@ const initialLayouts = {
 };
 function Content({ size: { width }, editLayout }) {
   const [chartData2, setChartData2] = useState([]);
-  const [reponame, setReponame] = useState(null);
-  const [ownername, setOwnername] = useState(null);
+  const [repo1, setRepo1] = useState(null);
+  const [repo2, setRepo2] = useState(null);
   const [noRepo, setNoRepo] = useState(false);
   const [chartData, setChartData] = useState([]);
-  const [reponame2, setReponame2] = useState(null);
-  const [ownername2, setOwnername2] = useState(null);
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState(originalItems);
@@ -188,11 +186,11 @@ function Content({ size: { width }, editLayout }) {
 
   useEffect(() => {
     setLoading(true);
-    ownername2 &&
-      reponame2 &&
+    let repo2Details = repo2 && repo2.split("/");
+    repo2 &&
       axios
         .get(
-          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/metrics/getRepoLatestMonthlyPerfomance?userId=${userId}&ownername=${ownername2}&reponame=${reponame2}`
+          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/metrics/getRepoLatestMonthlyPerfomance?userId=${userId}&ownername=${repo2Details[0]}&reponame=${repo2Details[1]}`
         )
         .then((res) => {
           setChartData2(res.data.reverse());
@@ -202,15 +200,15 @@ function Content({ size: { width }, editLayout }) {
           console.log(err);
           setLoading(false);
         });
-  }, [reponame2, ownername2]);
+  }, [repo2]);
 
   useEffect(() => {
     setLoading(true);
-    ownername &&
-      reponame &&
+    let repo1Details = repo1 && repo1.split("/");
+    repo1 &&
       axios
         .get(
-          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/metrics/getRepoLatestMonthlyPerfomance?userId=${userId}&ownername=${ownername}&reponame=${reponame}`
+          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/metrics/getRepoLatestMonthlyPerfomance?userId=${userId}&ownername=${repo1Details[0]}&reponame=${repo1Details[1]}`
         )
         .then((res) => {
           setChartData(res.data.reverse());
@@ -220,7 +218,7 @@ function Content({ size: { width }, editLayout }) {
           console.log(err);
           setLoading(false);
         });
-  }, [reponame, ownername]);
+  }, [repo1]);
 
   useEffect(() => {
     setLoading(true);
@@ -232,10 +230,8 @@ function Content({ size: { width }, editLayout }) {
         setRepos(res.data);
         if (res.data.length > 1) {
           setNoRepo(false);
-          setOwnername(res.data[0].ownername);
-          setReponame(res.data[0].reponame);
-          setOwnername2(res.data[1].ownername);
-          setReponame2(res.data[1].reponame);
+          setRepo1(`${res.data[0].ownername}/${res.data[0].reponame}`);
+          setRepo2(`${res.data[1].ownername}/${res.data[1].reponame}`);
         } else {
           setNoRepo(true);
         }
@@ -260,12 +256,10 @@ function Content({ size: { width }, editLayout }) {
               originalItems={originalItems}
             />
           ) : (
-            <SelectRepo
+            <SelectRepos
               repos={repos}
-              setOwnername={setOwnername}
-              setReponame={setReponame}
-              setOwnername2={setOwnername2}
-              setReponame2={setOwnername2}
+              setRepo1={setRepo1}
+              setRepo2={setRepo2}
             />
           )}
           <ResponsiveGridLayout
@@ -304,8 +298,8 @@ function Content({ size: { width }, editLayout }) {
                         return { [day.Date]: day[key.replace("Chart", "")] };
                       })
                     }
-                    reponame={reponame}
-                    reponame2={reponame2}
+                    repo1={repo1}
+                    repo2={repo2}
                   />
                 </>
               </div>

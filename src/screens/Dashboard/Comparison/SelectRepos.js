@@ -20,13 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SelectRepo({
-  repos = [],
-  setReponame,
-  setOwnername,
-  setReponame2,
-  setOwnername2,
-}) {
+export default function SelectRepo({ repos = [], setRepo1, setRepo2 }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -42,8 +36,7 @@ export default function SelectRepo({
 
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
-    setReponame(repos[index].reponame);
-    setOwnername(repos[index].ownername);
+    setRepo1(`${repos[index].ownername}/${repos[index].reponame}`);
     setAnchorEl(null);
   };
 
@@ -57,8 +50,7 @@ export default function SelectRepo({
 
   const handleMenuItemClick2 = (event, index) => {
     setSelectedIndex2(index);
-    setReponame2(repos[index].reponame);
-    setOwnername2(repos[index].ownername);
+    setRepo2(`${repos[index].ownername}/${repos[index].reponame}`);
     setAnchorEl2(null);
   };
 
