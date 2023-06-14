@@ -48,9 +48,6 @@ function NavBar() {
               <Link className="navbar-item ml-4" to="/price">
                 Pricing
               </Link>
-              <Link className="navbar-item ml-4" to="#">
-                Contact us
-              </Link>
               {state.isAuthenticated ? (
                 <a className="navbar-item ml-4">
                   <button
