@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Route, Switch, BrowserRouter, Router } from "react-router-dom";
+import React from "react";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 import HomePage from "./screens/HomePage";
 import { useAuthContext } from "@asgardeo/auth-react";
 import Payment from "./screens/Payment/PaymentPage";
@@ -11,9 +11,8 @@ import AddRepositories from "./screens/AddRepositories/Index";
 import PickRepositories from "./screens/PickRepository/Index";
 import Dashboard from "./screens/Dashboard/Dashboard";
 import LogFirst from "./common/LogFirst/LogFirst";
+import AdminDashboard from "./screens/AdminDashboard/AdminDashboard";
 import "./App.css";
-import UnderConstruction from "./common/UnderConstruction/UnderConstruction";
-import NotFound from "./common/NotFound/NotFound";
 import About from "./screens/AboutPage/About";
 import Settings from "./screens/Settings";
 
@@ -48,6 +47,11 @@ function App() {
               <Route exact path="/checkout" component={PaymentPage}></Route>
               <Route exact path="/dashboard/*" component={Dashboard}></Route>
               <Route exact path="/dashboard" component={Dashboard}></Route>
+              <Route
+                exact
+                path="/admindashboard"
+                component={AdminDashboard}
+              ></Route>
             </>
           ) : (
             <>
@@ -66,6 +70,7 @@ function App() {
 
               <Route exact path="/checkout" component={LogFirst}></Route>
               <Route exact path="/dashboard" component={LogFirst}></Route>
+              <Route exact path="/admindashboard" component={LogFirst}></Route>
             </>
           )}
         </Switch>

@@ -7,6 +7,8 @@ import WidgetChart from "./WidgetChart";
 import SelectRepo from "./SelectRepo";
 import axios from "axios";
 import AskToAddRepo from "../../../common/AskToAddRepo/AskToAddRepo";
+import { useAuthContext } from "@asgardeo/auth-react";
+import { useHistory } from "react-router-dom";
 
 const originalItems = [
   "totalNumberOfLines",
@@ -310,9 +312,11 @@ function Content({ size: { width }, editLayout }) {
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState(originalItems);
   const userId = sessionStorage.getItem("userId");
+  const history = useHistory();
   const [layouts, setLayouts] = useState(
     getFromLS("layouts") || initialLayouts
   );
+  const { getBasicUserInfo } = useAuthContext();
   const onLayoutChange = (_, allLayouts) => {
     setLayouts(allLayouts);
   };
@@ -365,6 +369,15 @@ function Content({ size: { width }, editLayout }) {
 
   useEffect(() => {
     setLoading(true);
+    getBasicUserInfo()
+      .then((res) => {
+        if (res.groups[0] == "Admin") {
+          history.push("/admindashboard");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     axios
       .get(
         `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/getUserAllRepos?userId=${userId}`
