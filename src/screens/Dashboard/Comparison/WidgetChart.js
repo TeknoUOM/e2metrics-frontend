@@ -109,6 +109,16 @@ export default function Widget({
 
       {loading ? (
         <MoonLoader color={"#3CE794"} size={25} speedMultiplier={1} />
+      ) : data.length < 1 || data2.length < 1 ? (
+        <p
+          style={{
+            textAlign: "center",
+            verticalAlign: "middle",
+            display: "table-cell",
+          }}
+        >
+          No data
+        </p>
       ) : (
         <div className={classes.body}>
           <Line options={options} labels={labels} data={tempData} />

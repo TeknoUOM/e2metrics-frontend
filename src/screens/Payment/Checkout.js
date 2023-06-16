@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { roles } from "../../common/constant";
 import axios from "axios";
@@ -32,7 +32,7 @@ const Checkout = ({ plan, amount }) => {
     actions.order
       .capture()
       .then((details) => {
-        sessionStorage.setItem("role", roles[plan]);
+        sessionStorage.setItem("role", plan);
         //change user group on asgardeo
         axios
           .put(
@@ -97,6 +97,11 @@ const Checkout = ({ plan, amount }) => {
           });
       })
       .catch((e) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
         console.log(e);
       });
   };

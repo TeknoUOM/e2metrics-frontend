@@ -14,7 +14,7 @@ function ViewReport() {
   useEffect(() => {
     axios
       .get(
-        `${process.env.REACT_APP_BACKEND_CHOREO_URL}s/metrics/getMonthlyReport?userId=${userId}&startDate=${startDate}&endDate=${endDate}`,
+        `${process.env.REACT_APP_BACKEND_CHOREO_URL}/metrics/getMonthlyReport?userId=${userId}&startDate=${startDate}&endDate=${endDate}`,
         {
           headers: {
             "API-Key": process.env.REACT_APP_BACKEND_API_KEY,

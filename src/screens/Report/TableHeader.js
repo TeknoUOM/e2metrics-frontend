@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   description: {
-    width: "40%",
+    width: "20%",
   },
 
   qty: {
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 
 const TableHeader1 = () => (
   <View style={styles.container}>
-    <Text style={styles.qty}>Date</Text>
+    <Text style={styles.description}>Date</Text>
     <Text style={styles.qty}>Issues Fixing Frequency</Text>
     <Text style={styles.qty}>Bug Fix Ratio</Text>
     <Text style={styles.qty}>Commit Count</Text>

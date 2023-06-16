@@ -312,6 +312,7 @@ function Content({ size: { width }, editLayout }) {
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState(originalItems);
   const userId = sessionStorage.getItem("userId");
+  const [repoDeleted, setRepoDeleted] = useState(false);
   const history = useHistory();
   const [layouts, setLayouts] = useState(
     getFromLS("layouts") || initialLayouts
@@ -352,6 +353,7 @@ function Content({ size: { width }, editLayout }) {
         })
         .catch((err) => {
           console.log(err);
+          setCardData([]);
           setLoading(false);
         });
   }, [reponame, ownername]);
@@ -377,6 +379,7 @@ function Content({ size: { width }, editLayout }) {
         })
         .catch((err) => {
           console.log(err);
+          setChartData([]);
           setLoading(false);
         });
   }, [reponame, ownername]);
@@ -418,7 +421,7 @@ function Content({ size: { width }, editLayout }) {
         console.log(err);
         setLoading(false);
       });
-  }, []);
+  }, [repoDeleted]);
 
   return (
     <>
@@ -437,6 +440,8 @@ function Content({ size: { width }, editLayout }) {
               repos={repos}
               setOwnername={setOwnername}
               setReponame={setReponame}
+              setRepoDeleted={setRepoDeleted}
+              repoDeleted={repoDeleted}
             />
           )}
           <ResponsiveGridLayout

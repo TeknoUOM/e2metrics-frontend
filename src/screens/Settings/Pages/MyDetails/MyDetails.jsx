@@ -14,6 +14,7 @@ function MyDetails() {
   const [firstNameError, setFirstNameError] = useState("");
   const [lastNameError, setLastNameError] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [mobileError, setMobileError] = useState("");
   const [isEditable, setIsEditable] = useState(false);
   const [loading, setLoading] = useState(false);
   const userId = sessionStorage.getItem("userId");
@@ -64,11 +65,13 @@ function MyDetails() {
     const firstNameRegex = /^[a-zA-Z]+$/;
     const lastNameRegex = /^[a-zA-Z]+$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const mobileRegex = /^[0-9]{10}$/;
 
     // Validation messages
     const firstNameError = "Name can only contain letters";
     const lastNameError = "Name can only contain letters";
     const emailError = "Please enter a valid email address";
+    const mobileError = "Please enter a valid 10-digit mobile number";
 
     // Validate first name
     if (!firstName.match(firstNameRegex)) {
@@ -85,6 +88,10 @@ function MyDetails() {
     // Validate email
     if (!email.match(emailRegex)) {
       setEmailError(emailError);
+      return;
+    }
+    if (!mobile.match(mobileRegex)) {
+      setMobileError(mobileError);
       return;
     }
 
@@ -192,8 +199,14 @@ function MyDetails() {
                         type="text"
                         value={mobile}
                         readOnly={!isEditable}
-                        onChange={(e) => setMobile(e.target.value)}
+                        onChange={(e) => {
+                          setMobile(e.target.value);
+                          setMobileError("");
+                        }}
                       ></input>
+                      {mobileError && (
+                        <p className="help is-danger">{mobileError}</p>
+                      )}
                     </div>
                   </div>
                 </div>

@@ -67,7 +67,7 @@ const Price = () => {
                     <div className="content">
                       <p className="title is-3 my-6">Free</p>
                       <p className="subtitle is-5 my-6">
-                        <strong>$0</strong>/mo
+                        <strong>$0</strong>
                       </p>
                       <ul className="px-6">
                         <li className="my-6">
@@ -119,7 +119,7 @@ const Price = () => {
                     <div className="content">
                       <p className="title is-3 my-6">Basic</p>
                       <p className="subtitle is-5 my-6">
-                        <strong>$55</strong>/mo
+                        <strong>$55</strong>
                       </p>
                       <ul className="px-6">
                         <li className="my-6">
@@ -173,7 +173,7 @@ const Price = () => {
                     <div className="content">
                       <p className="title is-3 my-6">Premium</p>
                       <p className="subtitle is-5 my-6">
-                        <strong>$89</strong>/mo
+                        <strong>$89</strong>
                       </p>
                       <ul className="px-6">
                         <li className="my-6">

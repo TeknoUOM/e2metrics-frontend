@@ -35,20 +35,17 @@ const PaymentPage = () => {
                   <div className="content">
                     <div className="is-flex is-justify-content-space-between">
                       <p className="title is-4">{planName + " Plan"}</p>
-                      <p className="title is-4">
-                        {" "}
-                        ${subscriptionPrice[plan]}/mo
-                      </p>
+                      <p className="title is-4"> ${subscriptionPrice[plan]}</p>
                     </div>
                     <hr />
                     <div className="is-flex is-justify-content-space-between">
                       <p>Sub total</p>
-                      <p> ${subTotal}/mo</p>
+                      <p> ${subTotal}</p>
                     </div>
                     <hr />
                     <div className="is-flex is-justify-content-space-between">
                       <p className="title is-4">Total due today</p>
-                      <p> ${total}/mo</p>
+                      <p> ${total}</p>
                     </div>
                   </div>
                 </div>

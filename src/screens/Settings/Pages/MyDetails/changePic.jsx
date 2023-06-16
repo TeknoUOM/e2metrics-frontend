@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./changePic.css";
+import Swal from "sweetalert2";
 import axios from "axios";
+import "./changePic.css";
 
 function ImageUpload() {
   const [image, setImage] = useState(null);
@@ -10,12 +11,23 @@ function ImageUpload() {
   );
   const userId = sessionStorage.getItem("userId");
 
+  const [isPicChnaged, setIsPicChnaged] = useState(false);
+
   const handleImageChange = (event) => {
+    setIsPicChnaged(true);
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       setImage(reader.result);
+    };
+    reader.onerror = () => {
+      setIsPicChnaged(false);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
     };
   };
 
@@ -35,6 +47,11 @@ function ImageUpload() {
         setPreviewImage(res.data);
       })
       .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
         console.log(err);
       });
   }, []);
@@ -51,9 +68,19 @@ function ImageUpload() {
         },
       })
       .then((res) => {
-        console.log(res);
+        Swal.fire({
+          icon: "success",
+          title: "Done",
+          text: "Picture Uploaded Successfully",
+        });
+        setIsPicChnaged(false);
       })
       .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
         console.log(err);
       });
   };
@@ -85,13 +112,15 @@ function ImageUpload() {
           />
         </div>
 
-        <button
-          class="button is-primary is-small"
-          className="uploadButton"
-          onClick={handleUploadButtonClick}
-        >
-          Upload
-        </button>
+        {isPicChnaged ? (
+          <button
+            class="button is-primary is-small"
+            className="uploadButton"
+            onClick={handleUploadButtonClick}
+          >
+            Upload
+          </button>
+        ) : null}
       </div>
     </div>
   );

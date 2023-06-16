@@ -1,11 +1,13 @@
 .payment-deatils-card {
-  width: 60vw;
+  width: 80vw;
 }
 
 .payment-card {
   width: 30vw;
   text-align: center;
   margin: auto;
-  overflow-y: auto;
-  overflow-x: auto
+  max-height: max-content;
+    padding: 20px;
+    height: 300px;
+    overflow-y: scroll;
 }

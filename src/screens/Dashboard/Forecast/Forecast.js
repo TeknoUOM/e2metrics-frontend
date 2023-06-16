@@ -206,6 +206,7 @@ function Content({ size: { width }, editLayout }) {
         })
         .catch((err) => {
           console.log(err);
+          setChartData([]);
           setLoading(false);
         });
   }, [reponame, ownername]);

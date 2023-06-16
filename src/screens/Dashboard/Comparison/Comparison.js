@@ -205,6 +205,7 @@ function Content({ size: { width }, editLayout }) {
         })
         .catch((err) => {
           console.log(err);
+          setChartData2([]);
           setLoading(false);
         });
   }, [repo2]);
@@ -230,6 +231,7 @@ function Content({ size: { width }, editLayout }) {
         })
         .catch((err) => {
           console.log(err);
+          setChartData([]);
           setLoading(false);
         });
   }, [repo1]);

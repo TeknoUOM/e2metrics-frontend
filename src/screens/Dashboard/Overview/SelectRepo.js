@@ -6,6 +6,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
+import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./SelectRepo.scss";
@@ -22,7 +23,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SelectRepo({ repos = [], setReponame, setOwnername }) {
+export default function SelectRepo({
+  repos = [],
+  setReponame,
+  setOwnername,
+  setRepoDeleted,
+  repoDeleted,
+}) {
   const classes = useStyles();
   const history = useHistory();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -33,20 +40,30 @@ export default function SelectRepo({ repos = [], setReponame, setOwnername }) {
   const removeRepo = () => {
     repos &&
       axios
-        .delete(`${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/removeRepo`, {
-          headers: {
-            "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
-            accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          userId: userId,
-          ghUser: repos[selectedIndex].ownername,
-          repo: repos[selectedIndex].reponame,
-        })
+        .delete(
+          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/removeRepo?userId=${userId}&ownername=${repos[selectedIndex].ownername}&reponame=${repos[selectedIndex].reponame}`,
+          {
+            headers: {
+              "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+              accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        )
         .then((res) => {
-          console.log(res);
+          Swal.fire({
+            icon: "success",
+            title: "Done",
+            text: "Repository Successfully Deleted",
+          });
+          setRepoDeleted(!repoDeleted);
         })
         .catch((err) => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+          });
           console.log(err);
         });
   };
@@ -83,7 +100,11 @@ export default function SelectRepo({ repos = [], setReponame, setOwnername }) {
           >
             <ListItemText
               primary="Repository"
-              secondary={repos.length > 0 && repos[selectedIndex].reponame}
+              secondary={
+                repos.length > 0 &&
+                repos[selectedIndex] &&
+                repos[selectedIndex].reponame
+              }
             />
           </ListItem>
         </List>

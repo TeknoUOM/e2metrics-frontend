@@ -4,7 +4,7 @@ import { MoonLoader } from "react-spinners";
 
 // import ProgressCircle from "./ProgressCircle";
 
-const StatBox = ({ value, subtitle = " ", loading }) => {
+const StatBox = ({ value = "No value", subtitle = " ", loading }) => {
   return (
     <>
       <Box width="100%" m="0 10px">
