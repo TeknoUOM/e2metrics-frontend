@@ -31,7 +31,7 @@ const Price = () => {
         console.log(res);
         setLoading(false);
         sessionStorage.setItem("role", roles.FREE);
-        history.push("/dashboard");
+        history.push("/dashboard/overview");
       })
       .catch((err) => {
         Swal.fire({
