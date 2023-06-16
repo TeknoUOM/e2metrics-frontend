@@ -2,9 +2,3 @@
   margin-top: 12vh;
   display: flex;
 }
-.buttons {
-  margin-left: 40vw;
-  margin-top: 40vh;
-  display: flex;
-  justify-content: space-evenly;
-}

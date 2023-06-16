@@ -131,7 +131,7 @@ const Reports = () => {
           ) : null}
 
           {changed ? (
-            <div className="buttons">
+            <div>
               <button
                 class="button is-primary is-outlined"
                 onClick={handleSave}

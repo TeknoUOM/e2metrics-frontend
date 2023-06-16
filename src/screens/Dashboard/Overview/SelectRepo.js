@@ -38,34 +38,43 @@ export default function SelectRepo({
   const open = Boolean(anchorEl);
 
   const removeRepo = () => {
-    repos &&
-      axios
-        .delete(
-          `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/removeRepo?userId=${userId}&ownername=${repos[selectedIndex].ownername}&reponame=${repos[selectedIndex].reponame}`,
-          {
-            headers: {
-              "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
-              accept: "application/json",
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((res) => {
-          Swal.fire({
-            icon: "success",
-            title: "Done",
-            text: "Repository Successfully Deleted",
-          });
-          setRepoDeleted(!repoDeleted);
-        })
-        .catch((err) => {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
-          });
-          console.log(err);
-        });
+    Swal.fire({
+      title: "Do you want to Delete This Repository?",
+      showDenyButton: true,
+      confirmButtonText: "Yes",
+      denyButtonText: `No`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        repos &&
+          axios
+            .delete(
+              `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/removeRepo?userId=${userId}&ownername=${repos[selectedIndex].ownername}&reponame=${repos[selectedIndex].reponame}`,
+              {
+                headers: {
+                  "API-Key": process.env.REACT_APP_BACKEND_API_KEY,
+                  accept: "application/json",
+                  "Content-Type": "application/json",
+                },
+              }
+            )
+            .then((res) => {
+              Swal.fire({
+                icon: "success",
+                title: "Done",
+                text: "Repository Successfully Deleted",
+              });
+              setRepoDeleted(!repoDeleted);
+            })
+            .catch((err) => {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+              });
+              console.log(err);
+            });
+      }
+    });
   };
 
   const handleClickListItem = (event) => {
