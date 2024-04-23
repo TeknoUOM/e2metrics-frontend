@@ -11,8 +11,10 @@ const root = ReactDOM.createRoot(
 );
 
 const config = {
-  signInRedirectURL: "http://localhost:3000/dashboard/overview",
-  signOutRedirectURL: "http://localhost:3000",
+  signInRedirectURL:
+    "https://09264f87-1ae4-4aa9-bf4b-53f66341d158.e1-us-east-azure.choreoapps.dev/dashboard/overview",
+  signOutRedirectURL:
+    "https://09264f87-1ae4-4aa9-bf4b-53f66341d158.e1-us-east-azure.choreoapps.dev/",
   clientID: "2C6sgeKa7ZIXInTYmdZg0j3Sf_Ia",
   baseUrl: "https://api.asgardeo.io/t/tekno",
   scope: ["openid", "profile", "address", "email", "groups", "phone"],
