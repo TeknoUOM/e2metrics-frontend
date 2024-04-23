@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 const AuthorizeToGithub = () => {
   const userId = sessionStorage.getItem("userId");
   const onSuccess = (res) => {
+    console.log(process.env.REACT_APP_BACKEND_API_KEY);
     axios
       .post(
         `${process.env.REACT_APP_BACKEND_CHOREO_URL}/user/authorizeToGithub`,
