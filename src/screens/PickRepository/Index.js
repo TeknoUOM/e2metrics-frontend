@@ -93,9 +93,11 @@ const PickRepositories = () => {
         let owners = [...new Set(res.data.map((repo) => repo.owner.login))];
         setOption(owners);
         owners.forEach((owner) => {
-          repos[owner] = res.data.filter((repo) => {
-            return repo.owner.login == owner;
-          });
+          repos[owner] =
+            res.data &&
+            res.data.filter((repo) => {
+              return repo.owner.login == owner;
+            });
         });
         setRepos(repos);
         setData(repos[ghUsername]);
